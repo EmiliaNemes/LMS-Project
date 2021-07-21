@@ -3,4 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  before_create :build_school
+  belongs_to :school, foreign_key: 'school_id'
+  #accepts_nested_attributes_for :school, allow_destroy: true
+  accepts_nested_attributes_for :school, reject_if: ->(attributes){ attributes['name'].blank? }, allow_destroy: true
+  
 end
