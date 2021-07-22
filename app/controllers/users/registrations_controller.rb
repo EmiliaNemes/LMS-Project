@@ -18,9 +18,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @school = School.new(params.require(:school).permit(:name, :subdomain))
 
     if @school.save
-        @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
+        @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student))
         @user.school_id = @school.id
-        
+        @user.administrator = true
+        @user.teacher = false
+        @user.student = false
+
         if @user.save
           sign_in(@user)
         end
@@ -59,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
    protected
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :school_id, school_attributes: [:name, :subdomain]])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student, :school_id, school_attributes: [:name, :subdomain]])
    end
 
   # If you have extra params to permit, append them to the sanitizer.
