@@ -11,24 +11,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-  #   super
 
     puts params[:user][:school_attributes]
-    params[:school] = params[:user][:school_attributes]
+    params[:school] = params[:user].delete(:school_attributes)
 
     @school = School.new(params.require(:school).permit(:name, :subdomain))
 
     if @school.save
-        params[:school] = params[:user].delete(:school_attributes)
         @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
         @user.school_id = @school.id
-
         @user.save
 
-        #redirect_to 
+        redirect_to @school
       else
         puts " ## ERROR"
-      end
+    end
 
   end
 
