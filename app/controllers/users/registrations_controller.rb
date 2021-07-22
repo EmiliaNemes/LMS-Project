@@ -1,23 +1,36 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-   before_action :configure_sign_up_params, only: [:create]
-   before_action :configure_account_update_params, only: [:update]
+    include ApplicationHelper
+    before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-   def new
-     #super
-     #1.times {@user.school.build}
-
-     build_resource({})
-     resource.build_school
-     respond_with self.resource
-    end
+  # def new
+  # end
 
   # POST /resource
-  # def create
+  def create
   #   super
-  # end
+
+    puts params[:user][:school_attributes]
+    params[:school] = params[:user][:school_attributes]
+
+    @school = School.new(params.require(:school).permit(:name, :subdomain))
+
+    if @school.save
+        params[:school] = params[:user].delete(:school_attributes)
+        @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
+        @user.school_id = @school.id
+
+        @user.save
+
+        #redirect_to 
+      else
+        puts " ## ERROR"
+      end
+
+  end
 
   # GET /resource/edit
   # def edit
@@ -46,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
    protected
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, school_attributes: [:name, :subdomain]])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :school_id, school_attributes: [:name, :subdomain]])
    end
 
   # If you have extra params to permit, append them to the sanitizer.

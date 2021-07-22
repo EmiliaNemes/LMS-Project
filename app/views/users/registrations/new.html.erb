@@ -19,43 +19,40 @@
 					<h2><b><br/>Sign up</b></h2>
 				</div>
 					
-				<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-          School:
-          <div class="row form-group form__input">
-            <%= f.fields_for :school do |school_form| %>
-              <li> 
-                <%= school_form.label :name %><br />
-                <%= school_form.text_field :name %>
-
-                <%= school_form.label :subdomain %>
-                <%= school_form.text_field :subdomain %>
-              </li>
-            <% end %>
-          </div>
+				<%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%#= render "devise/shared/error_messages", resource: resource %>
+          <b><u><h3>School</h3></u></b>
           
-          <div class="row form-group form__input">
-            <b><%= f.label :email %><br /><b>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
+          <%= nested_form_for([resource_name, resource.with_school], url: registration_path(resource_name)) do |f| %>
+            <%= f.fields_for :school do |school_form| %>
+              <div class="row form-group form__input">
+                <b><%= school_form.label :name %></b>
+                <%= school_form.text_field :name %>
+            
+                <b><br /><%= school_form.label :subdomain %></b>
+                <%= school_form.text_field :subdomain %>
+              </div>
+            <% end %>
 
-          <div class="row form-group form__input">
-            <b><%= f.label :password %></b>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
-          </div>
+              <b><u><h3><br />Administrator</h3></u></b>
+              <div class="row form-group form__input">
+                <b><%= f.label :email %><b>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            
+                <b><br /><%= f.label :password %></b>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %>
+                <%= f.password_field :password, autocomplete: "new-password" %>
+            
+                <b><br /><%= f.label :password_confirmation %></b>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+              </div>
 
-          <div class="row form-group form__input">
-            <b><%= f.label :password_confirmation %><br /></b>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-          </div>
-
-          <div class="actions">
-            <%= f.submit "Sign up", class: "btn btn-primary {color: #008080}" %>
-          </div>
-        <% end %>
+              <div class="actions">
+                <%= f.submit "Sign up", class: "btn btn-primary {color: #008080}" %>
+              </div>
+          <% end %>
 				<%= render "devise/shared/links" %>
 			</div>
 		</div>
