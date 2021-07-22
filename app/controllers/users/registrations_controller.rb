@@ -20,9 +20,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @school.save
         @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
         @user.school_id = @school.id
-        @user.save
+        
+        if @user.save
+          sign_in(@user)
+        end
 
-        redirect_to @school
+        redirect_to after_sign_in_path_for(@user)
       else
         puts " ## ERROR"
     end
