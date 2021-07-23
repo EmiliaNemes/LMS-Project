@@ -6,7 +6,7 @@
     display: flex;
 }
 .company__info{
-    background-color: #008080;
+    background-color: #004D4D;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     display: flex;
@@ -31,7 +31,7 @@
     .main-content{width: 70%;}
 }
 .row > h2{
-    color:#008080;
+    color:#004D4D;
 }
 .login_form{
     background-color: #fff;
@@ -55,23 +55,23 @@ form{
     transition: all .5s ease;
 }
 .form__input:focus{
-    border-bottom-color: #008080;
+    border-bottom-color: #004D4D;
     box-shadow: 0 0 5px rgba(0,80,80,.4); 
     border-radius: 4px;
 }
 .btn{
     transition: all .5s ease;
-    width: 70%;
+    width: 30%;
     border-radius: 30px;
-    color:#008080;
+    color:#004D4D;
     font-weight: 600;
     background-color: #fff;
-    border: 1px solid #008080;
+    border: 1px solid #004D4D;
     margin-top: 1.5em;
     margin-bottom: 1em;
 }
 .btn:hover, .btn:focus{
-    background-color: #008080;
+    background-color: #004D4D;
     color:#fff;
 }
 
@@ -95,17 +95,17 @@ form{
 }
 
 .profile-button:focus {
-    background: #008080;
+    background: #004D4D;
     box-shadow: none
 }
 
 .profile-button:active {
-    background: #008080;
+    background: #004D4D;
     box-shadow: none
 }
 
 .back:hover {
-    color: #008080;
+    color: #004D4D;
     cursor: pointer
 }
 
@@ -114,10 +114,10 @@ form{
 }
 
 .add-experience:hover {
-    background: #329999;
+    background: #004D4D;
     color: #fff;
     cursor: pointer;
-    border: solid 1px #329999
+    border: solid 1px #004D4D
 }
 
 

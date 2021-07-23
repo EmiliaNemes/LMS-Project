@@ -19,6 +19,21 @@
     font-family: "Georgia";
 }
 
+.title--font{
+    font-family: Brush Script MT, cursive;
+    font-size: 70px;
+    text-shadow: 2px 2px #787878;
+}
+
+.space--field{
+    margin-bottom: 20px;
+}
+
+::placeholder{
+    color: #3d3d3d;
+    opacity: 1;
+}
+
 
 
 

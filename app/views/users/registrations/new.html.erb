@@ -2,7 +2,7 @@
 	<div class="row main-content bg-success text-center">
 		<div class="col-md-4 text-center company__info">
 			<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
-			<h4 class="company_title">LMS</h4>
+			<h4 class="company_title title--font">neptune</h4>
 		</div>
 		
 		<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
@@ -18,33 +18,18 @@
           <%= nested_form_for([resource_name, resource.with_school], url: registration_path(resource_name)) do |f| %>
             <%= f.fields_for :school do |school_form| %>
               <div class="row form-group form__input">
-                <b><%= school_form.label :name %></b>
-                <%= school_form.text_field :name %>
-            
-                <b><br /><%= school_form.label :subdomain %></b>
-                <%= school_form.text_field :subdomain %>
+                <%= school_form.text_field :name, placeholder: "Name", class: "space--field" %><br />
+                <%= school_form.text_field :subdomain, placeholder: "Subdomain", class: "space--field" %>
               </div>
             <% end %>
 
               <b><u><h3><br />Administrator</h3></u></b>
               <div class="row form-group form__input">
-                <b><%= f.label :first_name %><b>
-                <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-
-                <b><%= f.label :last_name %><b>
-                <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-
-                <b><%= f.label :email %><b>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            
-                <b><br /><%= f.label :password %></b>
-                <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %>
-                <%= f.password_field :password, autocomplete: "new-password" %>
-            
-                <b><br /><%= f.label :password_confirmation %></b>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "First Name", class: "space--field" %>
+                <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "Last Name", class: "space--field" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "space--field" %>
+                <%= f.password_field :password, autocomplete: "new-password", class: "space--field", placeholder: "Password (6 characters minimum)" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation", class: "space--field" %>
               </div>
 
               <div class="actions">

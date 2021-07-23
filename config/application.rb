@@ -1,3 +1,5 @@
+require 'apartment/elevators/subdomain'
+
 require_relative "boot"
 
 require "rails/all"
@@ -8,8 +10,11 @@ Bundler.require(*Rails.groups)
 
 module Myapp
   class Application < Rails::Application
+    # config.middleware.use Apartment::Elevators::Subdomain
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+
+    config.session_store :cookie_store, :key => '_domain_session', :domain => :all
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -28,7 +28,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
           sign_in(@user)
         end
 
-        redirect_to after_sign_in_path_for(@user)
+        #redirect_to after_sign_in_path_for(@user)
+        redirect_to request.url.sub(@school.subdomain, '')
       else
         puts " ## ERROR"
     end
