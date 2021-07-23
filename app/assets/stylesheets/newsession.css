@@ -1,5 +1,5 @@
 .main-content{
-    width: 50%;
+    width: 90%;
     border-radius: 20px;
     box-shadow: 0 5px 5px rgba(0,0,0,.4);
     margin: 5em auto;
@@ -44,7 +44,7 @@ form{
     padding: 0 2em;
 }
 .form__input{
-    width: 100%;
+    width: 70%;
     border:0px solid transparent;
     border-radius: 0;
     border-bottom: 1px solid #aaa;
@@ -74,3 +74,50 @@ form{
     background-color: #008080;
     color:#fff;
 }
+
+
+
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #636463
+}
+
+.profile-button {
+    background: #636463;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #008080
+}
+
+.profile-button:focus {
+    background: #008080;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #008080;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #008080;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #329999;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #329999
+}
+
+
