@@ -1,5 +1,3 @@
-require 'apartment/elevators/subdomain'
-
 require_relative "boot"
 
 require "rails/all"

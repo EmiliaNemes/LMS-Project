@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
 
   resources :schools
-  devise_for :users, controllers: {registrations: "users/registrations"}
+  devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions"}
+  
+  constraints subdomain: /.+/ do
+    resources :schools
+  end
+
+  # constraints subdomain: false do
+  #  root 'home#index'
+  # end
   
   root 'home#index'
   #get 'home/index'
