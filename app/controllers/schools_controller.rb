@@ -67,4 +67,9 @@ class SchoolsController < ApplicationController
     def school_params
       params.require(:school).permit(:name, :subdomain)
     end
+
+    def force_json
+      request.format = :json
+    end
+    
 end

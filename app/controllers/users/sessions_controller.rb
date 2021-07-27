@@ -3,14 +3,26 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  def index
+    @schools = School.order(:name)
+    @schools = @schools.where("name like ?", "%#{params[:name]}%") if params[:name]
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @schools.map(&:name) }
+    end
+  end
+
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    super
+    @schools = School.pluck(:name).sort
+  end
 
   # POST /resource/sign_in
   def create
     
+      @schools = School.pluck(:name).sort
       school_name = params[:user][:school_attributes][:name]
       @school_id =  School.find_by_name(school_name).id
       session[:school_id] = @school_id

@@ -12,22 +12,25 @@
 				</div>
 					
 				<%= nested_form_for([resource_name, resource.with_school], url: session_path(resource_name)) do |f| %>
-				<%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					<br /><img src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png" width="70" height="70">
 					<div class="row form-group form__input">
-						<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "space--field" %>
-						<%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "space--field" %>
+						
+						<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "space--field form-control search-input" %>
+						<%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "space--field form-control search-input" %>
 					</div>
+
+					<img src="https://media.istockphoto.com/vectors/book-and-student-hat-education-icon-vector-vector-id618642436?k=6&m=618642436&s=170667a&w=0&h=t-ovfI2NR37BZNlO9e6r8bG9boupowRYYuIuZ5ZKcN0=" width="70" height="70">
+					
+					<%= f.fields_for :school do |school_form| %>
+						<div id= "search-data" class="form-search search-data row form-group form__input" data-schools="<%= @schools.to_json %>">
+							<%= school_form.text_field :name, as: :search, data: {autocomplete_source: user_session_path}, class: "space--field form-control search-input", placeholder: "School Name" %>
+						</div>
+					<% end %>
 
 					<% if devise_mapping.rememberable? %>
 						<div class="field">
 						<%= f.check_box :remember_me %>
 						<%= f.label :remember_me %>
-						</div>
-					<% end %>
-
-					<%= f.fields_for :school do |school_form| %>
-						<div class="row form-group form__input">
-							<%= school_form.text_field :name, placeholder: "School Name", class: "space--field" %><br />
 						</div>
 					<% end %>
 
