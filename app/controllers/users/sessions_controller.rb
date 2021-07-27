@@ -9,20 +9,17 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-
   def create
-    puts resource.inspect
-    puts "%%%%%% SCF" + params[:school]
-    school_name = params.require(:school).permit(:name)
-    puts "@@@@@ kl" + school_name
-    #if request.subdomain == nil
+    
+      school_name = params[:user][:school_attributes][:name]
+      @school_id =  School.find_by_name(school_name).id
+      session[:school_id] = @school_id
 
-    if request.subdomain == School.find(current_user.school_id).subdomain
-      redirect_to after_sign_in_path_for(current_user)
-    else
+      user = User.find_by_email_and_school_id(current_user.email, @school_id)
       sign_out(current_user)
-      redirect_to root_path, alert: "No permission"
-    end
+      sign_in(user)
+      redirect_to after_sign_in_path_for(user)
+
   end
 
   # DELETE /resource/sign_out

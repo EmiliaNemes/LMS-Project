@@ -11,7 +11,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-
     puts params[:user][:school_attributes]
     params[:school] = params[:user].delete(:school_attributes)
 
@@ -25,14 +24,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @user.student = false
 
         if @user.save
-          session[:subdomain] = @school.subdomain
+          session[:school_id] = @school.id
           sign_in(@user)
+        else
+          puts "# ERROR WHILE SAVING USER"
         end
 
         redirect_to after_sign_in_path_for(@user)
-        #redirect_to schools_url(session[:subdomain]), notice: "Welcome to #{@school.name}"
       else
-        puts " ## ERROR"
+        puts "# ERROR WHILE SAVING SCHOOL"
     end
 
   end
