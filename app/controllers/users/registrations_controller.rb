@@ -52,7 +52,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
             puts "# ERROR WHEN SAVING USER"
           end
       else # this user already exists with that school
-        # alert: 'This User already exists in this School'
         redirect_to new_user_registration_path, notice: 'Sorry. This User already exists in this School'
       end
     end
