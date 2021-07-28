@@ -1,2 +1,10 @@
-<h1>This is the dashboard</h1>
-<%= current_user.school.name %>
+
+<div>
+    <%= render 'sidebar' %>
+    <div style="margin-left:25%">
+        <main>
+            <h1>This is the dashboard</h1>
+            <%= current_user.school.name %>
+        </main>
+    </div>
+</div>

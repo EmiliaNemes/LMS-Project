@@ -14,25 +14,47 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts params[:user][:school_attributes]
     params[:school] = params[:user].delete(:school_attributes)
 
-    @school = School.new(params.require(:school).permit(:name, :subdomain))
+    school_in_db = School.find_by_name(params[:school][:name])
+    if  school_in_db == nil
+      @school = School.new(params.require(:school).permit(:name, :subdomain))
 
-    if @school.save
-        @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student))
-        @user.school_id = @school.id
-        @user.administrator = true
-        @user.teacher = false
-        @user.student = false
+      if @school.save
+          @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student))
+          @user.school_id = @school.id
+          @user.administrator = true
+          @user.teacher = false
+          @user.student = false
 
-        if @user.save
-          session[:school_id] = @school.id
-          sign_in(@user)
+          if @user.save
+            session[:school_id] = @school.id
+            sign_in(@user)
+          else
+            puts "# ERROR WHEN SAVING USER"
+          end
+
+          redirect_to after_sign_in_path_for(@user)
         else
-          puts "# ERROR WHILE SAVING USER"
-        end
+          puts "# ERROR WHEN SAVING SCHOOL"
+      end
+    else # school with that name already exists
+      user_in_db = User.find_by_email(params[:user][:email])
+      if user_in_db == nil || User.find_by_email_and_school_id(params[:user][:email], school_in_db.id) == nil
+        @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student))
+          @user.school_id = school_in_db.id
+          @user.administrator = true
+          @user.teacher = false
+          @user.student = false
 
-        redirect_to after_sign_in_path_for(@user)
-      else
-        puts "# ERROR WHILE SAVING SCHOOL"
+          if @user.save
+            session[:school_id] = school_in_db.id
+            sign_in(@user)
+          else
+            puts "# ERROR WHEN SAVING USER"
+          end
+      else # this user already exists with that school
+        # alert: 'This User already exists in this School'
+        redirect_to new_user_registration_path, notice: 'Sorry. This User already exists in this School'
+      end
     end
 
   end
