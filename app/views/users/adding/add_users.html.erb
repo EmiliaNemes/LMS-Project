@@ -3,32 +3,11 @@
   <div class="card-body">
     <h5 class="card--title">Add Users To Your School: <b><i><%= current_user.school.name %></i></b></h5>
     <p class="card--text"><br />You can add users to this school <i>manually</i> or you can <i>upload a document</i> with the users you want to add. <br />
-    <br />If you want to add the users from document then it must have the <i>.csv</i> extension, and it must contain the following columns: <i>First Name, Last Name, Email Address, Teacher, Student</i>).
+      <br />If you want to add the users from document then it must have the <i>.csv</i> extension, and it must contain the following columns: <i>First Name, Last Name, Email Address, Teacher, Student</i>).
     </p>
-    <a id="manually" class="btn btn-primary btn--primary">Add Manually</a>
-
-
-    <!-- <p class="card--text">How many users do you want to add? </p> -->
-    <%= form_tag("/get_number", method:"get") do %>
-      <p class="card--text">How many users do you want to add? </p>
-      <%= select_tag "number", 0..10 %>
-    <% end %>
-
-    <%= form_tag("/add_users", method:"get") do %>
-      <% 3.times do %> 
-        <div class="row form-group form__input">
-          <% render 'group_user_form' %>
-        </div>
-      <% end %>
-       
-      <div class="actions">
-        <%= submit_tag "Save", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-
-
-    <a href="#" class="btn btn-primary btn--primary">Add From File</a>
-    <%#= link_to 'Add Manually', administrator_add_manually_path, class:"btn btn-primary" %>
+    
+    <%= link_to 'Add Manually', users_adding_add_users_manually_path, class:"btn btn-primary btn--primary" %>
     <%#= link_to 'Add From File', administrator_add_manually_path, class:"btn btn-primary" %>
+    <a href="#" class="btn btn-primary btn--primary">Add From File</a>
   </div>
 </div>

@@ -1,0 +1,37 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">Add Users Manually</h5>
+    <div class="card-body">
+        <p class="card--text"><br />How many users do you want to add? <br /></p>
+        <%= form_with(url: users_adding_add_users_manually_path(@nr), method: :get, local: true) do |form| %>
+            <!--
+            <div class="row">
+                <div class="col">
+                    <%#= form.select :number, ["1","2","3","4","5","6","7","8","9","10"], {}, {class: "form-select form-select-md mb-3 form--select"} %>
+                </div>
+                <div class="col col--padding">
+                    <%#= form.submit "OK", class: "btn btn-primary" %>
+                </div>
+            </div>
+            -->
+
+            <%= form.select :number, ["1","2","3","4","5","6","7","8","9","10"], {}, {class: "form-select form-select-md mb-3 form--select"} %>
+            <%= form.submit "Choose", class: "btn btn--primary2" %>
+
+        <% end %>
+
+        <%= form_tag("/add_users", method:"get") do %>
+            <% @contor.to_i.times do %> 
+                <p>JUST</p>
+                <!--<div class="row form-group form__input">-->
+                <%# render 'group_user_form' %>
+                <!--</div>-->
+            <% end %>
+        <% if @contor.to_i > 0 %>    
+            <div class="actions">
+                <%= submit_tag "Save", class: "btn btn--primary2" %>
+            </div>
+        <% end %>
+            
+        <% end %>
+    </div>
+</div>

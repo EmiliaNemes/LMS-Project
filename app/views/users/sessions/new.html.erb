@@ -44,3 +44,21 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+ <%= form_with(url: users_adding_add_users_manually_path(@nr), method: :get, local: true) do |form| %>
+            <div class="row">
+                <div class="col-sm-4 col-sm-6">
+                    <%= form.select :number, ["1","2","3","4","5","6","7","8","9","10"], {}, {class: "form-select form-select-md mb-3 form--select"} %>
+                </div>
+                <div class ="col-sm-4 col-sm-6">
+                    <%= form.submit "OK", class: "btn-primary" %>
+                </div>
+            </div>
+        <% end %>
