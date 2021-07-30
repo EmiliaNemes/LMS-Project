@@ -9,8 +9,5 @@ class Users::AddingController < ApplicationController
         else
             @contor = 0
         end
-
-        #puts params[:users][0][:first_name]
     end
-
 end

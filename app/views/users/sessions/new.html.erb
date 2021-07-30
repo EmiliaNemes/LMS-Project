@@ -46,19 +46,20 @@
 </div>
 
 
+<%= form_tag "/users" do %>
+            <% @contor.to_i.times do %> 
+                        <!--<div class="row form-group form__input">-->
+                        <%= text_field_tag "users[][first_name]", placeholder: "First Name" %><br />
+                        <%#= text_field_tag :last_name %>
+                        <%#= text_field_tag :email %>
+                        <!--</div>-->
+            <% end %>
 
-
-
-
-
-
- <%= form_with(url: users_adding_add_users_manually_path(@nr), method: :get, local: true) do |form| %>
-            <div class="row">
-                <div class="col-sm-4 col-sm-6">
-                    <%= form.select :number, ["1","2","3","4","5","6","7","8","9","10"], {}, {class: "form-select form-select-md mb-3 form--select"} %>
+            <% if @contor.to_i > 0 %>    
+                <div class="actions">
+                <%#= submit_tag "Save", class: "btn btn--primary2" %>
+                    <%= link_to 'Save', home_dashboard_path, class:"btn btn--primary2" %>
                 </div>
-                <div class ="col-sm-4 col-sm-6">
-                    <%= form.submit "OK", class: "btn-primary" %>
-                </div>
-            </div>
-        <% end %>
+            <% end %>
+            
+<% end %>

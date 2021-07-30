@@ -3,7 +3,32 @@
     <div class="card-body">
         <p class="card--text"><br />How many users do you want to add? <br /></p>
         <%= form_with(url: users_adding_add_users_manually_path(@nr), method: :get, local: true) do |form| %>
-            <!--
+            <%= form.select :number, @nr.to_a, {}, {class: "form-select form-select-md mb-3 form--select"} %>
+            <%#= form.submit "Choose", class: "btn btn--primary2" %>
+            <%= link_to 'Choose', users_save_users_save_users_path, class:"btn btn--primary2" %>
+        <%# end %>
+
+        <% @contor.to_i.times do %> 
+            <div class="row form-group form__input">
+                <%= form.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "First Name", class: "space--field" %>
+                <%= form.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "Last Name", class: "space--field" %>
+                <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "space--field" %>
+            </div>
+        <% end %>
+
+            <% if @contor.to_i > 0 %>    
+                <div class="actions">
+                <%#= submit_tag "Save", class: "btn btn--primary2" %>
+                    <%= link_to 'Save', home_dashboard_path, class:"btn btn--primary2" %>
+                </div>
+            <% end %>
+            
+        <% end %>
+    </div>
+</div>
+
+
+<!--
             <div class="row">
                 <div class="col">
                     <%#= form.select :number, ["1","2","3","4","5","6","7","8","9","10"], {}, {class: "form-select form-select-md mb-3 form--select"} %>
@@ -13,25 +38,3 @@
                 </div>
             </div>
             -->
-
-            <%= form.select :number, ["1","2","3","4","5","6","7","8","9","10"], {}, {class: "form-select form-select-md mb-3 form--select"} %>
-            <%= form.submit "Choose", class: "btn btn--primary2" %>
-
-        <% end %>
-
-        <%= form_tag("/add_users", method:"get") do %>
-            <% @contor.to_i.times do %> 
-                <p>JUST</p>
-                <!--<div class="row form-group form__input">-->
-                <%# render 'group_user_form' %>
-                <!--</div>-->
-            <% end %>
-        <% if @contor.to_i > 0 %>    
-            <div class="actions">
-                <%= submit_tag "Save", class: "btn btn--primary2" %>
-            </div>
-        <% end %>
-            
-        <% end %>
-    </div>
-</div>
