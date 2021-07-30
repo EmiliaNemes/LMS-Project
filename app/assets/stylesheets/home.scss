@@ -37,7 +37,9 @@
   font-weight: bold;
   font-size: 20px;
   font-family: "Georgia";
-  line-height: 1;
+  line-height: 2;
+  margin-top: 10px; 
+  margin-bottom: 10px;
   text-decoration: none;
 }
 
@@ -55,7 +57,7 @@ body {
   font-family: "Georgia";
   position: relative;
   overflow-x: hidden;
-  background-color: #CFD8DC;
+  background-color: #f9f9f9;
   line-height: 1.5;
 }
 body,
@@ -232,57 +234,6 @@ margin-right: 10px;
   top: 0;
 }
 
-/*Fontawesome icons*/
-.nav.sidebar-nav li a::before {
-  font-family: fontawesome;
-  content: "\f12e";
-  vertical-align: baseline;
-  display: inline-block;
-  padding-right: 10px;
-}
-a[href*="#home"]::before {
-content: "\f015" !important;
-}
-a[href*="#about"]::before {
-content: "\f129" !important;
-}
-a[href*="#events"]::before {
-content: "\f073" !important;
-}
-a[href*="#events"]::before {
-content: "\f073" !important;
-}
-a[href*="#team"]::before {
-content: "\f0c0" !important;
-}
-a[href*="#works"]::before {
-content: "\f0b1" !important;
-}
-a[href*="#pictures"]::before {
-content: "\f03e" !important;
-}
-a[href*="#videos"]::before {
-content: "\f03d" !important;
-}
-a[href*="#books"]::before {
-content: "\f02d" !important;
-}
-a[href*="#art"]::before {
-content: "\f1fc" !important;
-}
-a[href*="#awards"]::before {
-content: "\f02e" !important;
-}
-a[href*="#services"]::before {
-content: "\f013" !important;
-}
-a[href*="#contact"]::before {
-content: "\f086" !important;
-}
-a[href*="#followme"]::before {
-content: "\f099" !important;
-color: #0084b4;
-}
 /*-------------------------------*/
 /*       Hamburger-Cross         */
 /*-------------------------------*/
@@ -401,3 +352,50 @@ display: block;
 /*            Overlay            */
 /*-------------------------------*/
 
+.card {
+  background-color: #F0DC82!important;
+  color: #002525!important;
+}
+
+.card--header{
+  background-color: #E1CD73!important;
+  font-weight: bold;
+  font-size: 20px;
+  color: #002525!important;
+  text-decoration: none!important;
+}
+
+.card--header:hover{
+  background-color: #D2BE64!important;
+  font-size: 25px;
+  color: #0a4343!important;
+  text-decoration: none!important;
+}
+
+.card--header--link{
+  color: #002525!important;
+  text-decoration: none!important;
+}
+
+.card--header--title{
+  background-color: #E1CD73!important;
+  font-weight: bold;
+  font-size: 25px;
+  color: #002525!important;
+  text-decoration: none!important;
+}
+
+.card--text{
+  font-size: 20px;
+}
+
+.card--title{
+  font-size: 23px;
+  text-decoration: underline;
+}
+
+.btn--primary{
+  font-size: 20px;
+  border-radius: 4px;
+  padding: 5px 8px!important;
+}

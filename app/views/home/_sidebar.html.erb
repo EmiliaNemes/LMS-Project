@@ -2,28 +2,27 @@
   <ul class="nav sidebar-nav">
     <div class="sidebar-header">
       <div class="sidebar-brand">
-        <%= link_to "neptune", home_dashboard_path, class:"brand--font" %></div></div>
-      <li></li>
-      
-      <li>
-        <i class="fa fa-home fa-fw" aria-hidden="true"></i>
-        <%= link_to "Classes", root_path, class:"sidebar--item--design" %>
+        <%= link_to "neptune", home_dashboard_path, class:"brand--font" %>
+      </div>
+    </div>
+
+    <li>
+        <%= link_to "Dashboard", home_dashboard_path, class:"sidebar--item--design" %>
+    </li>
+    
+    <% if current_user.administrator == true %>
+      <li><%= link_to "Classes", root_path, class:"sidebar--item--design" %></li>
+      <li><%= link_to "Grades", root_path, class:"sidebar--item--design" %></li>
+      <li><%= link_to "Add Users", users_adding_add_users_path, class:"sidebar--item--design" %></li>
+      <li class="dropdown">
+        <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">Works <span class="caret"></span></a>
+        <ul class="dropdown-menu animated fadeInLeft" role="menu">
+          <div class="dropdown-header">Dropdown heading</div>
+          <li><a href="#pictures">Pictures</a></li>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#art">Art</a></li>
+        </ul>
       </li>
-       <li><%= link_to "Grades", root_path, class:"sidebar--item--design" %></li>
-       <li><a href="#team">Team</a></li>
-       <li class="dropdown">
-       <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">Works <span class="caret"></span></a>
-     <ul class="dropdown-menu animated fadeInLeft" role="menu">
-      <div class="dropdown-header">Dropdown heading</div>
-      <li><a href="#pictures">Pictures</a></li>
-      <li><a href="#videos">Videeos</a></li>
-      <li><a href="#books">Books</a></li>
-      <li><a href="#art">Art</a></li>
-      <li><a href="#awards">Awards</a></li>
-      </ul>
-      </li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#followme">Follow me</a></li>
-      </ul>
+    <% end %>
+  </ul>
 </nav>
