@@ -1,0 +1,19 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title">Add Users From File</h5>
+  <div class="card-body">
+    <h5 class="card--title">Add Users To Your School: <b><i><%= current_user.school.name %></i></b></h5>
+    <p class="card--text"><br />You can add users to this school by choosing a document with the users you want to add. <br />
+      <div class="tab">
+        <li>The file must have the <i>.csv</i> extension.</li>
+        <li>The file must contain the following columns: <i>First Name, Last Name, Email Address, Administrator, Teacher, Student</i>).</li>
+        <li>The file must be located in the applications folder.</li>
+      </div>
+    </p>
+    
+
+    <%= form_with(url: users_adding_import_users_path(), method: :get, local: true) do |form| %>
+      <%= form.text_field :file_name, autofocus: true, autocomplete: "file name", placeholder: "File Name", class: "space--field--file" %>
+      <%= form.submit "Add Users From This File", class:"btn btn-primary btn--primary--bigger" %>
+    <% end %>
+  </div>
+</div>

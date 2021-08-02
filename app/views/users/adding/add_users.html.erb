@@ -8,6 +8,8 @@
     
     <%= link_to 'Add Manually', users_adding_add_users_manually_path, class:"btn btn-primary btn--primary" %>
     <%#= link_to 'Add From File', administrator_add_manually_path, class:"btn btn-primary" %>
-    <a href="#" class="btn btn-primary btn--primary">Add From File</a>
+    <%= form_tag users_adding_import_users_path, method: :get, multipart: true do %>
+      <%= submit_tag "Add From File", class:"btn btn-primary btn--primary" %>
+    <% end %>
   </div>
 </div>

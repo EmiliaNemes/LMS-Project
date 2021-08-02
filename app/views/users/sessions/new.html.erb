@@ -44,22 +44,3 @@
 		</div>
 	</div>
 </div>
-
-
-<%= form_tag "/users" do %>
-            <% @contor.to_i.times do %> 
-                        <!--<div class="row form-group form__input">-->
-                        <%= text_field_tag "users[][first_name]", placeholder: "First Name" %><br />
-                        <%#= text_field_tag :last_name %>
-                        <%#= text_field_tag :email %>
-                        <!--</div>-->
-            <% end %>
-
-            <% if @contor.to_i > 0 %>    
-                <div class="actions">
-                <%#= submit_tag "Save", class: "btn btn--primary2" %>
-                    <%= link_to 'Save', home_dashboard_path, class:"btn btn--primary2" %>
-                </div>
-            <% end %>
-            
-<% end %>

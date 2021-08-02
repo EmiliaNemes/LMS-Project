@@ -4,8 +4,8 @@
         <p class="card--text"><br />How many users do you want to add? <br /></p>
         <%= form_with(url: users_adding_add_users_manually_path(@nr), method: :get, local: true) do |form| %>
             <%= form.select :number, @nr.to_a, {}, {class: "form-select form-select-md mb-3 form--select"} %>
-            <%#= form.submit "Choose", class: "btn btn--primary2" %>
-            <%= link_to 'Choose', users_save_users_save_users_path, class:"btn btn--primary2" %>
+            <%= form.submit "Choose", class: "btn btn--primary2" %>
+            <%#= link_to 'Choose', users_save_users_save_users_path, class:"btn btn--primary2" %>
         <%# end %>
 
         <% @contor.to_i.times do %> 

@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get 'users/adding/add_users'
   get 'users/adding/add_users_manually'
   get 'users/save_users/save_users'
+  get 'users/adding/add_users_from_file'
+  get 'users/adding/import_users'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
