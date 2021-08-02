@@ -9,7 +9,6 @@
         <li>The file must be located in the applications folder.</li>
       </div>
     </p>
-    
 
     <%= form_with(url: users_adding_import_users_path(), method: :get, local: true) do |form| %>
       <%= form.text_field :file_name, autofocus: true, autocomplete: "file name", placeholder: "File Name", class: "space--field--file" %>

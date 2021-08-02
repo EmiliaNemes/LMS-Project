@@ -11,6 +11,7 @@
     </li>
     
     <% if current_user.administrator == true %>
+      <li><%= link_to "All Users", home_show_users_path, class:"sidebar--item--design" %></li>
       <li><%= link_to "Classes", root_path, class:"sidebar--item--design" %></li>
       <li><%= link_to "Grades", root_path, class:"sidebar--item--design" %></li>
       <li><%#= link_to "Add Users", users_adding_add_users_path, class:"sidebar--item--design" %></li>
