@@ -1,0 +1,11 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">
+        New Course
+        <%= link_to 'Back', courses_path, class:"btn btn--primary2--add" %>
+    </h5>
+    <div class="card-body">
+        <%= render 'form', course: @course %>
+    </div>
+</div>
+
+

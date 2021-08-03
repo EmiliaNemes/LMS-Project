@@ -11,10 +11,8 @@
     </li>
     
     <% if current_user.administrator == true %>
+      <li><%= link_to "Courses", courses_path, class:"sidebar--item--design" %></li>
       <li><%= link_to "All Users", home_show_users_path, class:"sidebar--item--design" %></li>
-      <li><%= link_to "Classes", root_path, class:"sidebar--item--design" %></li>
-      <li><%= link_to "Grades", root_path, class:"sidebar--item--design" %></li>
-      <li><%#= link_to "Add Users", users_adding_add_users_path, class:"sidebar--item--design" %></li>
       <li class="dropdown">
         <a class="dropdown-toggle sidebar--item--design" href="#" data-bs-toggle="dropdown" id="dropLink" aria-expanded="false">Add User<span class="caret"></span></a>
         
@@ -23,6 +21,7 @@
           <li><%= link_to 'Add From File', users_adding_add_users_from_file_path, class:"dropdown-item" %></li>
         </ul>
       </li>
+      <li><%= link_to "Grades", root_path, class:"sidebar--item--design" %></li>
     <% end %>
   </ul>
 </nav>

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title">
+    <%=@course.name %>
+    <%= link_to 'Back', courses_path, class:"btn btn--primary2--add" %>
+    <%= link_to 'Edit', edit_course_path(@course), class:"btn btn--primary2--add"  %>
+  </h5>
+  <div class="card-body">
+    <p>
+      <strong>Description:</strong>
+      <%= @course.description %>
+    </p>
+  </div>
+</div>

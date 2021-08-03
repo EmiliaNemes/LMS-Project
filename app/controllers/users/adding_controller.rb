@@ -14,25 +14,10 @@ class Users::AddingController < ApplicationController
 
     def save_users
         user = User.new(:email => params[:email], :first_name => params[:first_name], :last_name => params[:last_name], :school_id => current_user.school_id)
-
-        if params[:administrator].to_i == 1
-            user.administrator = true  
-        else 
-            user.administrator = false
-        end
-
-        if params[:teacher].to_i == 1 
-            user.teacher = true 
-        else 
-            user.teacher = false
-        end 
-
-        if params[:student].to_i == 1
-            user.student = true 
-        else 
-            user.student = false
-        end
-
+        user.administrator = params[:administrator].to_i == 1 
+        user.teacher = params[:teacher].to_i == 1 
+        user.student = params[:student].to_i == 1
+    
         puts user.inspect
         #if user.save
         #    redirect_to home_dashboard_path, alert: 'Users have been saved successfully!'

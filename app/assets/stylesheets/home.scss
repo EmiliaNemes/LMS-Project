@@ -32,6 +32,12 @@
   text-shadow: 2px 2px #787878;
 }
 
+.navbar--style{
+  color: white; 
+  background-color: #003939;
+  //background-color: #126f84;
+}
+
 .sidebar--item--design{
   color: white;
   font-weight: bold;
@@ -98,6 +104,7 @@ html { height: 100%;}
   overflow-y: auto;
   overflow-x: hidden;
   background: #003939;
+  //background: #005166;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -154,6 +161,7 @@ padding: 0;
   height: 100%;
   width: 3px;
   background-color: #004D4D;
+  //background-color: #005166;
   -webkit-transition: width .2s ease-in;
     -moz-transition:  width .2s ease-in;
      -ms-transition:  width .2s ease-in;
@@ -162,6 +170,7 @@ padding: 0;
 }
 .sidebar-nav li:hover{
 background: #004D4D !important;
+//background: #005166 !important;
 border-radius: 10px;
 margin-left: 10px;
 margin-right: 10px;
@@ -204,7 +213,9 @@ margin-right: 10px;
   height: 65px;
   position: relative;
   background:#004D4D;
+  //background:#126f84;
   background: linear-gradient(to right bottom, #003939 50%, #003939 50%);
+  //background: linear-gradient(to right bottom, #126f84 50%, #126f84 50%);
  padding-top: 1em;
 }
 .sidebar-brand a {
@@ -224,8 +235,8 @@ margin-right: 10px;
   text-align: center;
   font-size: 1em;
   color: #ddd;
-  background:#212531;
-  background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+  background:#ace0eb;
+  background: linear-gradient(to right bottom, #ace0eb 50%, #ace0eb 50%);
 }
 .sidebar-nav .dropdown-menu {
   position: relative;
@@ -360,35 +371,42 @@ display: block;
 /*-------------------------------*/
 
 .card {
-  background-color: #F0DC82!important;
+  //background-color: #F0DC82!important;
+  background-color: #ffedc9!important;
   color: #002525!important;
 }
 
 .card--header{
-  background-color: #E1CD73!important;
+  //background-color: #E1CD73!important;
+  //background-color: #126f84!important;
+  //background-color: #a0d4df!important;
+  background-color: #004d4d!important;
   font-weight: bold;
   font-size: 20px;
-  color: #002525!important;
+  color: #ffffff!important;
   text-decoration: none!important;
 }
 
 .card--header:hover{
-  background-color: #D2BE64!important;
+  //background-color: #D2BE64!important;
+  background-color: #003939!important;
   font-size: 25px;
-  color: #0a4343!important;
+  //color: #0a4343!important;
+  color: #ffffff!important;
   text-decoration: none!important;
 }
 
 .card--header--link{
-  color: #002525!important;
+  //color: #002525!important;
+  color: #ffffff!important;
   text-decoration: none!important;
 }
 
 .card--header--title{
-  background-color: #E1CD73!important;
+  background-color: #003939!important;
   font-weight: bold;
   font-size: 25px;
-  color: #002525!important;
+  color: #ffffff!important;
   text-decoration: none!important;
 }
 
@@ -414,6 +432,48 @@ display: block;
   padding: 5px 8px!important;
   width: 12%!important;
   margin-left: 1em!important;
+}
+
+.btn--primary2--add{
+  font-size: 18px;
+  border-radius: 4px!important;
+  padding: 5px 8px!important;
+  width: 12%!important;
+  //position: absolute;
+  //right: 0;
+  float: right;
+}
+
+.btn--primary2--update{
+  font-size: 18px;
+  border-radius: 4px!important;
+  padding: 5px 8px!important;
+  width: 15%!important;
+  //position: absolute;
+  //right: 0;
+  float: right;
+}
+
+.btn--primary2--delete{
+  font-size: 18px;
+  border-radius: 4px!important;
+  padding: 5px 8px!important;
+  width: 40%!important;
+  //position: absolute;
+  //right: 0;
+  float: right;
+}
+
+.btn--primary2--add:hover{
+  font-size: 18px;
+  border-radius: 4px!important;
+  padding: 5px 8px!important;
+  width: 12%!important;
+  //position: absolute;
+  //right: 0;
+  float: right;
+  background-color: #ffedc9!important;
+  color: #003939!important;
 }
 
 .btn--primary--bigger{
