@@ -59,14 +59,37 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    #super
+    puts "@@@@@@@@@@  YEAH EDIT"
+
+    user = @user
+    user.first_name = params[:first_name] if params[:first_name] != nil
+    user.last_name = params[:last_name] if params[:last_name] != nil
+    user.password = params[:password] if params[:password] != nil
+
+    puts "USER:" + user.inspect
+    #respond_to do |format|
+    #  if @user.update(user)
+    #    format.html { redirect_to home_dashboard_path, notice: "Course was successfully updated." }
+    #  end
+    #end
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    #super
+    puts "@@@@@@@@@@  NOW UPDATE"
+    puts "FIRST: " + params[:first_name]
+    puts "LAST: " + params[:last_name]
+
+    user = @user
+    user.first_name = params[:first_name] if params[:first_name] != nil
+    user.last_name = params[:last_name] if params[:last_name] != nil
+    user.password = params[:password] if params[:password] != nil
+
+    puts "USER:" + user.inspect
+  end
 
   # DELETE /resource
   # def destroy

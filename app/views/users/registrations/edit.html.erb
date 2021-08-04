@@ -19,13 +19,13 @@
               <b><u><h3><br />Administrator</h3></u></b>
               <div class="row form-group form__input">
                 <b><%= f.label :first_name %></b><br />
-                <%= f.text_field :first_name, placeholder: @current_user.first_name %>
+                <%= f.text_field :first_name, autocomplete: "first_name", placeholder: @current_user.first_name %>
 
                 <b><%= f.label :last_name %></b><br />
                 <%= f.text_field :last_name, placeholder: @current_user.last_name %>
 
                 <b><%= f.label :email %></b><br />
-                <%= f.email_field :email, placeholder: @current_user.email %>
+                <%= f.email_field :email, placeholder: @current_user.email, :readonly => true %>
             
                 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

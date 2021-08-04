@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users Courses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Course</th>
+      <th>Is teacher</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users_courses.each do |users_course| %>
+      <tr>
+        <td><%= users_course.user_id %></td>
+        <td><%= users_course.course_id %></td>
+        <td><%= users_course.is_teacher %></td>
+        <td><%= link_to 'Show', users_course %></td>
+        <td><%= link_to 'Edit', edit_users_course_path(users_course) %></td>
+        <td><%= link_to 'Destroy', users_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Users Course', new_users_course_path %>

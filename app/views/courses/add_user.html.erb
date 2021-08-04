@@ -1,6 +1,8 @@
+<p id="notice"><%= notice %></p>
 <div class="card" style="max-width: 80rem; min-height: 30rem">
-    <h5 class="card-header card--header--title">All Users</h5>
-    <div class="card-body">
+  <h5 class="card-header card--header--title">Add Users To Course</h5>
+  <div class="card-body">
+    <h5 class="card--title">List of users from this school:</h5><br />
         <div class="table-responsive">
             <table class="table">
                 <thead class="table">
@@ -16,7 +18,7 @@
                 </thead>
 
                 <tbody>
-                    <% @users.each do |user| %>
+                    <%@users.each do |user| %>
                     <tr>
                         <td><%= user.first_name %></td>
                         <td><%= user.last_name %></td>
@@ -32,9 +34,6 @@
                     <% end %>
                 </tbody>
             </table>
-
-            <%= link_to 'Add User', users_adding_add_users_manually_path, class:"btn btn--primary2" %>
-            <%= link_to 'Cancel', home_dashboard_path, class:"btn btn--primary2" %>
         </div>
-    </div>
+  </div>
 </div>

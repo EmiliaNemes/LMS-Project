@@ -1,5 +1,8 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
-    <h5 class="card-header card--header--title">All Users</h5>
+    <h5 class="card-header card--header--title">All Users 
+        <%= link_to 'Back', courses_path, class:"btn btn--primary2" %>
+        <%= link_to 'Add User', courses_add_user_path(@course), class:"btn btn--primary2--add"  %>
+    </h5>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table">
@@ -24,17 +27,11 @@
                         <td><%= user.administrator %></td>
                         <td><%= user.teacher %></td>
                         <td><%= user.student %></td>
-                        <td><%#= user 'Show', user %></td>
-                        
-                        <td><%#= link_to 'Edit', edit_friend_path(friend) %></td>
-                        <td><%#= link_to 'Destroy', user, //there is no user_path//,method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        <td><%= link_to 'Add To Course', courses_add_user_to_course_path(user) %></td>
                     </tr>
                     <% end %>
                 </tbody>
             </table>
-
-            <%= link_to 'Add User', users_adding_add_users_manually_path, class:"btn btn--primary2" %>
-            <%= link_to 'Cancel', home_dashboard_path, class:"btn btn--primary2" %>
         </div>
     </div>
 </div>
