@@ -2,8 +2,8 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
     <h5 class="card-header card--header--title">
         Editing Course
-        <%= link_to 'Back', courses_path, class:"btn btn--primary2--add" %>
-        <%= link_to 'Show', @course, class:"btn btn--primary2--add"  %>
+        <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
+        <%= link_to 'Show', @course, class:"btn btn--primary2--header--button"  %>
     </h5>
     <div class="card-body">
         <%= render 'form', course: @course %>

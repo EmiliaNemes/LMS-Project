@@ -1,7 +1,7 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
-    <h5 class="card-header card--header--title">All Users 
-        <%= link_to 'Back', courses_path, class:"btn btn--primary2" %>
-        <%= link_to 'Add User', courses_add_user_path(@course), class:"btn btn--primary2--add"  %>
+    <h5 class="card-header card--header--title">All Attendants 
+        <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
+        <%= link_to 'Add Attendants', courses_add_users_to_course_path(@course), class:"btn btn--primary2--header--button"  %>
     </h5>
     <div class="card-body">
         <div class="table-responsive">
@@ -14,12 +14,12 @@
                         <th>Administrator</th>
                         <th>Teacher</th>
                         <th>Student</th>
-                        <th colspan="3"></th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <% @users.each do |user| %>
+                    <%@users.each do |user| %>
                     <tr>
                         <td><%= user.first_name %></td>
                         <td><%= user.last_name %></td>
@@ -27,7 +27,11 @@
                         <td><%= user.administrator %></td>
                         <td><%= user.teacher %></td>
                         <td><%= user.student %></td>
-                        <td><%= link_to 'Add To Course', courses_add_user_to_course_path(user) %></td>
+                        <td>
+                            <% if UsersCourse.find_by_course_id_and_user_id(@course.id, user.id) != nil%>
+                                <%= link_to '-', courses_remove_user_from_course_url(id: @course, user_id: user), method: :remove_user_from_course, class:"btn btn--primary2--table" %>
+                            <% end %>
+                        </td>
                     </tr>
                     <% end %>
                 </tbody>

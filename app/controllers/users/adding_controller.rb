@@ -19,13 +19,12 @@ class Users::AddingController < ApplicationController
         user.student = params[:student].to_i == 1
     
         puts user.inspect
-        #if user.save
-        #    redirect_to home_dashboard_path, alert: 'Users have been saved successfully!'
-        #else
-            ##notice: "Could not save users from chosen file!"
-            #redirect_to users_adding_import_users_path #stay here, reload this page
-        #end
-        redirect_to home_show_users_path
+        if user.save
+            redirect_to home_show_users_path, alert: 'Users have been saved successfully!'
+        else
+            redirect_back(fallback_location: root_path) #stay here, reload this page
+        end
+        #redirect_to home_show_users_path
     end
 
     def import_users
@@ -38,8 +37,7 @@ class Users::AddingController < ApplicationController
                 if user.save
                     redirect_to home_dashboard_path, alert: 'Users have been saved successfully!'
                 else
-                    ##notice: "Could not save users from chosen file!"
-                    #redirect_to users_adding_import_users_path #stay here, reload this page
+                    redirect_back(fallback_location: root_path) #stay here, reload this page
                 end
             end
         else

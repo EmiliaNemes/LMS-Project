@@ -455,13 +455,33 @@ display: block;
 }
 
 .btn--primary2--delete{
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 4px!important;
-  padding: 5px 8px!important;
+  padding: 1px 1px!important;
   width: 40%!important;
   //position: absolute;
   //right: 0;
   float: right;
+}
+
+.btn--primary2--table{
+  font-size: 15px;
+  border-radius: 4px!important;
+  padding: 5px 5px!important;
+  width: 50px!important;
+  position: relative;
+  margin-top: 0em!important;
+  margin-bottom: 0em!important;
+}
+
+.btn--primary2--header--button{
+  font-size: 15px;
+  border-radius: 4px!important;
+  padding: 5px 5px!important;
+  width: 10%!important;
+  float: right;
+  margin-top: 0em!important;
+  margin-bottom: 0em!important;
 }
 
 .btn--primary2--add:hover{

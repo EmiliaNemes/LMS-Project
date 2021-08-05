@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy ] 
+  before_action :set_course, only: %i[ show edit update destroy users_of_course add_users_to_course remove ] 
   before_action :set_all_users, only: %i[ add_user ] 
   #before_action :set_courses_users, only: %i[ all_users ] 
 
@@ -58,6 +58,50 @@ class CoursesController < ApplicationController
     end
   end
 
+  def users_of_course
+    @users_course_from_course = UsersCourse.where(:course_id => @course.id)
+    puts @users_course_from_course.inspect
+
+    @users = Array.new
+    @users_course_from_course.each do |user_course|
+      @users.push(User.find(user_course.user_id))
+    end
+  end
+
+  def add_users_to_course
+    @users = User.where(:school_id => current_user.school_id)
+  end
+
+  def assign_user_to_course
+    @users_course = UsersCourse.new()
+    @users_course.course_id = params[:id]
+    @users_course.user_id = params[:user_id]
+    @users_course.is_teacher = User.find(params[:user_id]).teacher
+
+    if @users_course.save
+      puts "UsersCourse saved"
+    else
+      puts "UserCourse NOT saved"
+    end
+
+    redirect_to courses_add_users_to_course_path(), notice: "User added to course"
+  end
+
+  def remove_user_from_course
+    puts "## " + params[:id] + " ## " + params[:user_id]
+    @users_course = UsersCourse.find_by_course_id_and_user_id(params[:id], params[:user_id])
+    
+    UsersCourse.destroy(@users_course.id)
+
+    redirect_back(fallback_location: root_path)
+    #redirect_to courses_add_users_to_course_path(), notice: "User added to course"
+  end
+
+  def remove
+    self.destroy
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course
@@ -67,24 +111,6 @@ class CoursesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def course_params
       params.require(:course).permit(:name, :description)
-    end
-
-    def all_users
-    end
-
-    def add_user
-      @users = User.where(:school_id => current_user.school_id)
-    end
-
-    def add_user_to_course
-      puts "%% IN: " + "add_user_to_course"
-      @users_courses = UsersCourses.new(:user_id => user.id, :course_id => @course.id, is_teacher => user.teacher)
-
-      if @users_courses.save
-        puts "OKK"
-      else
-        puts "NOOOOO"
-      end
     end
 
     def set_all_users
