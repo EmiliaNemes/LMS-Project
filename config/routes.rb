@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   get 'courses/assign_user_to_course/:id', to: "courses#assign_user_to_course", :as => 'courses_assign_user_to_course'
   get 'courses/remove_user_from_course/:id', to: "courses#remove_user_from_course", :as => 'courses_remove_user_from_course'
   get 'courses/remove/:id', to: "courses#remove", :as => 'courses_remove'
+  get 'users/registrations/save_updates', to: "users/registrations#save_updates", :as => 'users_registrations_save_updates'
 end
