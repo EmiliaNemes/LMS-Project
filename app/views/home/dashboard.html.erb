@@ -4,7 +4,7 @@
         <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
             <div class="card-header card--header"><%= link_to "Courses", courses_path, class:"card--header--link" %></div>
             <div class="card-body">
-                <p class="card-text">All courses of this school: <%= current_user.school.name %></p>
+                <p class="card-text">All courses of this school: <%= @current_user.school.name %></p>
             </div>
         </div>
     </div>

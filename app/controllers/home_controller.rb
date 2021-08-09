@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
-  
-  def index
+  before_action :set_current_user
+
+  def set_current_user
     @current_user = current_user
+  end
+
+  def index
   end
 
   def show_users
