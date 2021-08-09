@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  before_action :set_current_user
-  before_action :set_current_school
+  before_action :set_current_user, only: [:dashboard]
+  before_action :set_current_school, only: [:dashboard]
 
   def set_current_user
     @current_user = current_user
@@ -10,8 +10,10 @@ class HomeController < ApplicationController
     @current_school = School.where(:school_id => current_user.school_id)
   end
 
+  def dashboard
+  end
+
   def index
-    @current_user = current_user
   end
 
   def show_users
