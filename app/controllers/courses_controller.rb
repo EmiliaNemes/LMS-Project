@@ -51,6 +51,11 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
+    @users_course = UsersCourse.where(:course_id => @course.id)
+    @users_course.each do |user_course|
+      UsersCourse.destroy(user_course.id)
+    end
+
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
@@ -60,7 +65,7 @@ class CoursesController < ApplicationController
 
   def users_of_course
     @users_course_from_course = UsersCourse.where(:course_id => @course.id)
-    puts @users_course_from_course.inspect
+    #puts @users_course_from_course.inspect
 
     @users = Array.new
     @users_course_from_course.each do |user_course|
@@ -79,22 +84,20 @@ class CoursesController < ApplicationController
     @users_course.is_teacher = User.find(params[:user_id]).teacher
 
     if @users_course.save
-      puts "UsersCourse saved"
+      #puts "UsersCourse saved"
     else
-      puts "UserCourse NOT saved"
+      #puts "UserCourse NOT saved"
     end
 
-    redirect_to courses_add_users_to_course_path(), notice: "User added to course"
+    redirect_to courses_add_users_to_course_path(), notice: "New User added to course!"
   end
 
   def remove_user_from_course
-    puts "## " + params[:id] + " ## " + params[:user_id]
     @users_course = UsersCourse.find_by_course_id_and_user_id(params[:id], params[:user_id])
     
     UsersCourse.destroy(@users_course.id)
 
-    redirect_back(fallback_location: root_path)
-    #redirect_to courses_add_users_to_course_path(), notice: "User added to course"
+    redirect_back(fallback_location: root_path) #notice with remove
   end
 
   def remove
@@ -121,9 +124,5 @@ class CoursesController < ApplicationController
     def set_courses_users
       # all users from this school and this course
       @users = User.where(:school_id => current_user.school_id)
-      #@users_courses = UsersCourses.where(:course_id => @course.id)
-      #puts @users_courses.inspect
-      #@users = User.where(:id => @users_courses.user_id)
-      #puts @users.inspect
     end
 end

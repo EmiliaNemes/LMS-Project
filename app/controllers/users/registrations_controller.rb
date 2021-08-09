@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    puts params[:user][:school_attributes]
+    #puts params[:user][:school_attributes]
     params[:school] = params[:user].delete(:school_attributes)
 
     school_in_db = School.find_by_name(params[:school][:name])
@@ -29,12 +29,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
             session[:school_id] = @school.id
             sign_in(@user)
           else
-            puts "# ERROR WHEN SAVING USER"
+            #puts "# ERROR WHEN SAVING USER"
           end
 
           redirect_to after_sign_in_path_for(@user)
         else
-          puts "# ERROR WHEN SAVING SCHOOL"
+          #puts "# ERROR WHEN SAVING SCHOOL"
       end
     else # school with that name already exists
       user_in_db = User.find_by_email(params[:user][:email])
@@ -49,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
             session[:school_id] = school_in_db.id
             sign_in(@user)
           else
-            puts "# ERROR WHEN SAVING USER"
+            #puts "# ERROR WHEN SAVING USER"
           end
       else # this user already exists with that school
         redirect_to new_user_registration_path, notice: 'Sorry. This User already exists in this School'
@@ -75,14 +75,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def save_updates
-    puts "@@@@@@@@@@  YEAH EDIT"
+    #puts "@@@@@@@@@@  YEAH EDIT"
 
-    puts "uuu " + @user.inspect
+    #puts "uuu " + @user.inspect
     user = @user
 
-    puts "### DATA: " + params[:user][:first_name]
+    #puts "### DATA: " + params[:user][:first_name]
 
-    puts "**** USER:" + user.inspect
+    #puts "**** USER:" + user.inspect
     respond_to do |format|
       if @user.update(user)
         redirect_to home_dashboard_path, notice: "Course was successfully updated."

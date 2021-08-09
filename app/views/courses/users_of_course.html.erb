@@ -29,7 +29,7 @@
                         <td><%= user.student %></td>
                         <td>
                             <% if UsersCourse.find_by_course_id_and_user_id(@course.id, user.id) != nil%>
-                                <%= link_to '-', courses_remove_user_from_course_url(id: @course, user_id: user), method: :remove_user_from_course, class:"btn btn--primary2--table" %>
+                                <%= link_to '-', courses_remove_user_from_course_url(id: @course, user_id: user), method: :get, class:"btn btn--primary2--table" %>
                             <% end %>
                         </td>
                     </tr>

@@ -32,11 +32,11 @@
                         <td><%= user.teacher %></td>
                         <td><%= user.student %></td>
                         <% if UsersCourse.find_by_course_id_and_user_id(@course.id, user.id) == nil%>
-                            <td><%= link_to '+', courses_assign_user_to_course_url(id: @course, user_id: user), method: :assign_user_to_course, class:"btn btn--primary2--table" %></td>
+                            <td><%= link_to '+', courses_assign_user_to_course_url(id: @course, user_id: user), method: :get, class:"btn btn--primary2--table" %></td>
                         <% else %>
                             <td></td>
                             <td>
-                                <%= link_to '-', courses_remove_user_from_course_url(id: @course, user_id: user), method: :remove_user_from_course, class:"btn btn--primary2--table" %>
+                                <%= link_to '-', courses_remove_user_from_course_url(id: @course, user_id: user), method: :get, class:"btn btn--primary2--table" %>
                             </td>
                         <% end %>
                     </tr>

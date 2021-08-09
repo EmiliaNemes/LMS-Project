@@ -5,7 +5,7 @@
     <%=@course.name %>
     <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
     <%= link_to 'Edit', edit_course_path(@course), class:"btn btn--primary2--header--button"  %>
-    <%= link_to 'Delete', courses_remove_path(@course), method: :remove, class:"btn btn--primary2--header--button", data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', courses_remove_path(@course), method: :get, class:"btn btn--primary2--header--button", data: { confirm: 'Are you sure?' } %>
     <%= link_to 'Attendants', courses_users_of_course_path(@course), class:"btn btn--primary2--header--button"  %>
   </h5>
   <div class="card-body">

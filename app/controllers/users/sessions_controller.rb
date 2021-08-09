@@ -30,7 +30,7 @@ class Users::SessionsController < Devise::SessionsController
       #user = User.find_by_email_and_school_id(current_user.email, @school_id)
       #sign_out(current_user)
       user = User.find_by_email_and_school_id(params[:user][:email], @school_id)
-      puts "*******" + current_user.inspect
+      #puts "*******" + current_user.inspect
       sign_in(user)
       redirect_to after_sign_in_path_for(user)
 

@@ -41,7 +41,7 @@ class Users::AddingController < ApplicationController
                 end
             end
         else
-            puts "The file could not be opened!"
+            #puts "The file could not be opened!"
         end
     end
 
