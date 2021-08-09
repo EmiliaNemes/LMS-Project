@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   end
 
   def index
+    @current_user = current_user
   end
 
   def show_users

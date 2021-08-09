@@ -34,7 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           end
 
           redirect_to after_sign_in_path_for(@user)
-        else
+      else
           #puts "# ERROR WHEN SAVING SCHOOL"
       end
     else # school with that name already exists
@@ -52,11 +52,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           else
             #puts "# ERROR WHEN SAVING USER"
           end
+          redirect_to after_sign_in_path_for(@user)
       else # this user already exists with that school
         redirect_to new_user_registration_path, notice: 'Sorry. This User already exists in this School'
       end
     end
-
   end
 
   # GET /resource/edit

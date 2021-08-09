@@ -17,6 +17,7 @@ global.toastr = require("toastr")
 
 require ("jquery")
 require("channels/js_for_sidebar")
+//= require jquery
 //= require jquery-ui
 //= require jquery_ujs
 //= require_tree .

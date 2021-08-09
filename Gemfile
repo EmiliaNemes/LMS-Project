@@ -20,6 +20,7 @@ gem 'devise', '~> 4.8'
 gem 'nested_form'
 gem 'google_drive'
 gem 'spring', '~> 1.7.2', '>=1.7.2'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
