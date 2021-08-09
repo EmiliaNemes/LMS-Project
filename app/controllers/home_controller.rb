@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def set_current_school
-    @current_school = current_user.school.name
+    @current_school = School.where(:school_id => current_user.school_id)
   end
 
   def index
