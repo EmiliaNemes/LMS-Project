@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
         stored_location_for(resource) || home_dashboard_path
     end
 
+    private
+    
     def current_user
         token = request.headers["Authorization"].to_s
         User.find_for_database_athentication(authentication_token: token)
