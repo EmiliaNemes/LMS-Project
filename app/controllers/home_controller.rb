@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
+  before_action :authenticate_user, only: [:dashboard]
   before_action :set_current_user, only: [:dashboard]
   before_action :set_current_school, only: [:dashboard]
 
