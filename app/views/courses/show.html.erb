@@ -7,16 +7,12 @@
     <%= link_to 'Edit', edit_course_path(@course), class:"btn btn--primary2--header--button"  %>
     <%= link_to 'Delete', courses_remove_path(@course), method: :get, class:"btn btn--primary2--header--button", data: { confirm: 'Are you sure?' } %>
     <%= link_to 'Attendants', courses_users_of_course_path(@course), class:"btn btn--primary2--header--button"  %>
-    <%= form_with(url: courses_add_resources_path(), method: :get, local: true) do |form| %>
-      <%= form.filestack_field :resource_url, 'Add New Resource', class:"btn btn--primary2--header--button" %>
-    <% end %>
+    <%= link_to 'Add Resource', new_resource_path(), class:"btn btn--primary2--header--button"  %>
   </h5>
   <div class="card-body">
     <p>
       <strong>Description:</strong>
       <%= @course.description %>
     </p>
-
-    <%#= filestack_picker_element 'Add New Resource', 'pick', pickerOptions: { 'fromSources': 'local_file_system', 'maxFiles': 10 } %>
   </div>
 </div>

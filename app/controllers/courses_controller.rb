@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
   # GET /courses/1 or /courses/1.json
   def show
     #@res = Resource.new()
+    @all_resources = Resource.where(:course_id => @course.id, :lesson_id => nil)
   end
 
   # GET /courses/new

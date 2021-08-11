@@ -22,6 +22,8 @@ gem 'google_drive'
 gem 'spring', '~> 1.7.2', '>=1.7.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'filestack-rails', '~> 5.5', '>= 5.5.2'
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

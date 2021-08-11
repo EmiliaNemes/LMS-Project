@@ -23,6 +23,8 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
 
+    puts "****  IN resource create: url: " + params[:url].to_s
+
     respond_to do |format|
       if @resource.save
         format.html { redirect_to @resource, notice: "Resource was successfully created." }

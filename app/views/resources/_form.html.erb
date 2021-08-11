@@ -11,27 +11,59 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div id="my_form">
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
+    <div class="field">
+      <%#= form.label :url %>
+      <%#= form.text_field :url %>
+    </div>
 
-  <div class="field">
-    <%= form.label :lesson_id %>
-    <%= form.number_field :lesson_id %>
-  </div>
+    <div class="field">
+      <%= form.label :lesson_id %>
+      <%= form.number_field :lesson_id %>
+    </div>
 
-  <div class="field">
-    <%= form.label :course_id %>
-    <%= form.number_field :course_id %>
-  </div>
+    <div class="field">
+      <%= form.label :course_id %>
+      <%= form.number_field :course_id %>
+    </div>
 
+    <div>
+      <button class="btn btn--primary2" type="button" onclick="files(event)">Upload Resources</button>
+
+      <p></p>
+      <%= form.hidden_field :url, id:"hidden_input_files" %>
+    </div>
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+  function files(){
+    event.preventDefault();
+    filepicker.setKey('A00aKRuy5Sj2VJTCVm8Koz');
+          
+    filepicker.pickMultiple(
+      {
+        mimetype: ['image/*', 'text/*'],
+        maxFiles: 3
+      },
+      function(Blobs){
+        var my_blobs = [];
+        for(var i = 0; i < Blobs.length; i++){
+          my_blobs.push(Blobs[i].url);
+          $("#hidden_input_files").val(my_blobs);
+          $( "#my_form" ).append( '<p><span class="glyphicon glyphicon-file"></span><b>' + Blobs[i].filename + '</b></p>'  );
+        }
+      },
+      function(error){}
+    );
+  }
+</script>
