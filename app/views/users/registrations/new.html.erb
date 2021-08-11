@@ -10,9 +10,6 @@
         <div class="row">
 					<h2><b><br/>Sign up</b></h2>
 				</div>
-					
-				<%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%#= render "devise/shared/error_messages", resource: resource %>
           <b><u><h3>School</h3></u></b>
           
           <%= nested_form_for([resource_name, resource.with_school], url: registration_path(resource_name)) do |f| %>
@@ -30,6 +27,8 @@
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "space--field" %>
                 <%= f.password_field :password, autocomplete: "new-password", class: "space--field", placeholder: "Password (6 characters minimum)" %>
                 <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation", class: "space--field" %>
+                <%= f.label :image %>
+                <%#= f.filestack_field :image, 'Upload Your Profile Picture' %>
               </div>
 
               <div class="actions">

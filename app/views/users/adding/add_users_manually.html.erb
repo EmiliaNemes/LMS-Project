@@ -3,10 +3,12 @@
     <h5 class="card-header card--header--title">Add Users Manually</h5>
     <div class="card-body">
         <!--<p class="card--text"><br />How many users do you want to add? <br /></p>-->
+        <!--
         <%#= form_with(url: users_adding_add_users_manually_path(@nr), method: :get, local: true) do |form| %>
             <%#= form.select :number, @nr.to_a, {}, {class: "form-select form-select-md mb-3 form--select"} %>
             <%#= form.submit "Choose", class: "btn btn--primary2" %>
         <%# end %>
+        -->
 
         <p class="card--text">Complete the following fields with the user's details</p>
         <%= form_with(url: users_adding_save_users_path(), method: :get, local: true) do |f| %>
@@ -32,26 +34,5 @@
             <%= link_to 'Cancel', home_dashboard_path, class:"btn btn--primary2" %>
         <% end %>
 
-        <%#= link_to 'Cancel', home_dashboard_path, class:"btn btn--primary2" %>
     </div>
 </div>
-
-<%#= form_for @detail do |form| %>
-            <%# form.fields_for :user do |builder| %> 
-                <!--<div class="row form-group form__input">-->
-                    <%#= builder.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "First Name", class: "space--field" %>
-                    <%#= builder.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "Last Name", class: "space--field" %>
-                    <%#= builder.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "space--field" %>
-                    <%#= builder.select :administrator, ["true", "false"], {class: "form-select form-select-md mb-3 form--select"} %>
-                    <%#= builder.select :teacher, ["true", "false"], {class: "form-select form-select-md mb-3 form--select"} %>
-                    <%#= builder.select :student, ["true", "false"], {class: "form-select form-select-md mb-3 form--select"} %>
-                <!--</div>-->
-            <%# end %>
-
-            <%# if @contor.to_i > 0 %>    
-               <!-- <div class="actions">-->
-                <%#= submit_tag "Save", class: "btn btn--primary2" %>
-                    <%#= link_to 'Save', home_dashboard_path, class:"btn btn--primary2" %>
-                <!--</div>--->
-            <%# end %>
-        <%# end %>

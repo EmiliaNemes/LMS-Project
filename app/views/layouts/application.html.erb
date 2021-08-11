@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <script>
+      /*
       $(document).ready(function () {
         var trigger = $('.hamburger'),
         overlay = $('.overlay'),
@@ -30,8 +31,8 @@
           $('#wrapper').toggleClass('toggled');
     });  
   });
-
-    </script>
+  */
+  </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,9 +45,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= filestack_js_include_tag %>
+    <%= filestack_js_init_tag %>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  
+
     <!--<%= yield(:head) %>-->
   </head>
   <body>

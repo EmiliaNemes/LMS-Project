@@ -13,6 +13,7 @@ module Myapp
     config.load_defaults 6.1
 
     config.session_store :cookie_store, :key => '_domain_session', :domain => :all
+    config.filestack_rails.api_key = 'A00aKRuy5Sj2VJTCVm8Koz'
 
     # Configuration for the application, engines, and railties goes here.
     #
