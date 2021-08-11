@@ -1,7 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy users_of_course add_users_to_course remove ] 
   before_action :set_all_users, only: %i[ add_user ] 
-  after_action :save_resources, only: %i[ show ] 
   #before_action :set_courses_users, only: %i[ all_users ] 
 
   # GET /courses or /courses.json
@@ -105,23 +104,6 @@ class CoursesController < ApplicationController
 
   def remove
     self.destroy
-  end
-
-  def add_resources
-  end
-
-  def save_resources
-    puts "@@@@@@@     HERE  "
-
-    @resource = Resource.new()
-
-    puts "##### URL in SAVE: " + params[:resource_url].to_s
-    puts "##### ID: " + params[:id].to_s
-
-    @resource.url = params[:resource_url]
-    @resource.course_id = params[:id]
-
-    #redirect_back(fallback_location: root_path) #notice with resources saved
   end
 
   private

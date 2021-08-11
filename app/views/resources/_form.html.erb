@@ -46,7 +46,7 @@
 <% end %>
 
 <script>
-  function files(){
+  /*function files(){
     event.preventDefault();
     filepicker.setKey('A00aKRuy5Sj2VJTCVm8Koz');
           
@@ -64,6 +64,25 @@
         }
       },
       function(error){}
+    );
+  }*/
+
+  function files(event){
+    event.preventDefault();
+    var file_key = "A00aKRuy5Sj2VJTCVm8Koz";
+    filepicker.setKey(file_key);
+          
+    filepicker.pick(
+      {
+        mimetype: ['text/*', 'image/*'],
+        container: 'modal',
+        services: ['COMPUTER', 'URL']
+      },
+      function(Blob){
+        $("#hidden_input_files").val(Blob.url);
+        $( "#my_form" ).append( '<p><span class="glyphicon glyphicon-file"></span><b>' + Blob.filename + '</b></p>'  );
+      },
+      function(FPError){}
     );
   }
 </script>

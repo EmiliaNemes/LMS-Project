@@ -21,6 +21,4 @@ Rails.application.routes.draw do
   get 'courses/remove_user_from_course/:id', to: "courses#remove_user_from_course", :as => 'courses_remove_user_from_course'
   get 'courses/remove/:id', to: "courses#remove", :as => 'courses_remove'
   get 'users/registrations/save_updates', to: "users/registrations#save_updates", :as => 'users_registrations_save_updates'
-  get 'courses/add_resources'
-  get 'courses/save_resources/:id', to: "courses#save_resources", :as => 'courses_save_resources'
 end

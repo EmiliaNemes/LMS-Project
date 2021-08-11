@@ -21,23 +21,3 @@ require("channels/js_for_sidebar")
 //= require jquery-ui
 //= require jquery_ujs
 //= require_tree .
-
-//import { Controller } from "stimulus"
-const Choices = require('choices.js')
-
-document.addEventListener("turbolinks:load", function(){
-    var dropDownSelects = new Choices('#dropdown-choice-select')
-})
-/*
-export default class extends Controller {
-  static targets = [ "input" ]
-
-  connect() {
-    this.inputTarget.choices = new Choices(this.inputTarget);
-  }
-
-  disconnect() {
-    this.inputTarget.choices.destroy();
-  }
-}
-*/
