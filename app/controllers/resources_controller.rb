@@ -3,7 +3,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources or /resources.json
   def index
-    @resources = Resource.all
+    @resources = Resource.where(:course_id => session[:course_id])
   end
 
   # GET /resources/1 or /resources/1.json
@@ -22,6 +22,8 @@ class ResourcesController < ApplicationController
   # POST /resources or /resources.json
   def create
     @resource = Resource.new(resource_params)
+    @resource.course_id = session[:course_id]
+    @resource.lesson_id = session[:lesson_id]
 
     respond_to do |format|
       if @resource.save

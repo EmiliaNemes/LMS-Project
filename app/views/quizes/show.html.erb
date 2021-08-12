@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @quize.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @quize.description %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @quize.student_id %>
+</p>
+
+<%= link_to 'Edit', edit_quize_path(@quize) %> |
+<%= link_to 'Back', quizes_path %>

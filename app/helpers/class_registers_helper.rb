@@ -1,0 +1,2 @@
+module ClassRegistersHelper
+end

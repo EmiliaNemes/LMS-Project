@@ -1,33 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Resources</h1>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">All Resources 
+      <%= link_to 'Back', course_path(session[:course_id]), class:"btn btn--primary2--header--button"  %>
+      <%= link_to 'New Resource', new_resource_path, class:"btn btn--primary2--header--button"  %>
+      </h5>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="table">
+            <tr>
+              <th>Name</th>
+              <th>Url</th>
+              <th>Lesson</th>
+              <th>Course</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Url</th>
-      <th>Lesson</th>
-      <th>Course</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @resources.each do |resource| %>
-      <tr>
-        <td><%= resource.name %></td>
-        <td><%= resource.url %></td>
-        <td><%= resource.lesson_id %></td>
-        <td><%= resource.course_id %></td>
-        <td><%= link_to 'Show', resource %></td>
-        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Resource', new_resource_path %>
+          <tbody>
+            <% @resources.each do |resource| %>
+              <tr>
+                <td><%= resource.name %></td>
+                <td><%= resource.url %></td>
+                <td><%= resource.lesson_id %></td>
+                <td><%= resource.course_id %></td>
+                <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+                <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+<br />

@@ -4,6 +4,7 @@
         Editing Course
         <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
         <%= link_to 'Show', @course, class:"btn btn--primary2--header--button"  %>
+        <%= link_to 'Edit Resources', resources_path(), class:"btn btn--primary2--header--button"  %>
     </h5>
     <div class="card-body">
         <%= render 'form', course: @course %>

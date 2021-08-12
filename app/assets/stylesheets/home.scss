@@ -449,9 +449,31 @@ display: block;
   border-radius: 4px!important;
   padding: 5px 8px!important;
   width: 15%!important;
-  //position: absolute;
-  //right: 0;
   float: right;
+}
+
+.btn--primary2--res--right{
+  font-size: 16px;
+  border-radius: 4px!important;
+  padding: 5px 8px!important;
+  width: 20%!important;
+  float: right;
+}
+
+.btn--primary2--res{
+  font-size: 16px;
+  border-radius: 4px!important;
+  padding: 5px 8px!important;
+  width: 20%!important;
+  margin-left: 3.5em!important;
+}
+
+.btn--primary2--res--small{
+  font-size: 14px;
+  border-radius: 4px!important;
+  padding: 5px 8px!important;
+  width: 15%!important;
+  margin-left: 1em!important;
 }
 
 .btn--primary2--delete{
@@ -459,8 +481,6 @@ display: block;
   border-radius: 4px!important;
   padding: 1px 1px!important;
   width: 40%!important;
-  //position: absolute;
-  //right: 0;
   float: right;
 }
 

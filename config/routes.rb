@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :class_registers
+  resources :users_assignments
+  resources :quiz_answers
+  resources :quiz_questions
+  resources :attachments
+  resources :essays
+  resources :quizes
+  resources :assignments
   resources :lessons
   resources :resources
   resources :users_courses

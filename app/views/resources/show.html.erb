@@ -1,24 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title">
+    New Resource
+    <%= link_to 'Back', course_path(session[:course_id]), class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Edit', edit_resource_path(@resource), class:"btn btn--primary2--header--button" %>
+  </h5>
+  <div class="card-body">
+    <p>
+      <strong>Name:</strong>
+      <%= @resource.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @resource.name %>
-</p>
+    <p>
+      <strong>Url:</strong>
+      <%= @resource.url %>
+    </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @resource.url %>
-</p>
+    <p>
+      <strong>Lesson:</strong>
+      <%= @resource.lesson_id %>
+    </p>
 
-<p>
-  <strong>Lesson:</strong>
-  <%= @resource.lesson_id %>
-</p>
+    <p>
+      <strong>Course:</strong>
+      <%= @resource.course_id %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <strong>Course:</strong>
-  <%= @resource.course_id %>
-</p>
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>

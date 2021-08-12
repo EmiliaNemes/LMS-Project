@@ -1,0 +1,2 @@
+class Quize < ApplicationRecord
+end

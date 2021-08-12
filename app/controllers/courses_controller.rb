@@ -110,6 +110,8 @@ class CoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
+      session[:course_id] = @course.id
+      session[:lesson_id] = nil
     end
 
     # Only allow a list of trusted parameters through.

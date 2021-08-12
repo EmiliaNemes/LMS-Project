@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @class_register.course_id %>
+</p>
+
+<p>
+  <strong>Assignment:</strong>
+  <%= @class_register.assignment_id %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @class_register.student_id %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @class_register.grade %>
+</p>
+
+<p>
+  <strong>Grading teacher:</strong>
+  <%= @class_register.grading_teacher_id %>
+</p>
+
+<%= link_to 'Edit', edit_class_register_path(@class_register) %> |
+<%= link_to 'Back', class_registers_path %>

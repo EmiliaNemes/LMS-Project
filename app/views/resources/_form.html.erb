@@ -12,28 +12,14 @@
   <% end %>
 
   <div id="my_form">
-    <div class="field">
+    <br />
+    <div class="field space--field">
       <%= form.label :name %>
       <%= form.text_field :name %>
     </div>
 
-    <div class="field">
-      <%#= form.label :url %>
-      <%#= form.text_field :url %>
-    </div>
-
-    <div class="field">
-      <%= form.label :lesson_id %>
-      <%= form.number_field :lesson_id %>
-    </div>
-
-    <div class="field">
-      <%= form.label :course_id %>
-      <%= form.number_field :course_id %>
-    </div>
-
     <div>
-      <button class="btn btn--primary2" type="button" onclick="files(event)">Upload Resources</button>
+      <button class="btn btn--primary2--res" type="button" onclick="files(event)">Upload Resources</button>
 
       <p></p>
       <%= form.hidden_field :url, id:"hidden_input_files" %>
@@ -41,7 +27,7 @@
   </div>
   
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn--primary2--res--right" %>
   </div>
 <% end %>
 
