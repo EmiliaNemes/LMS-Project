@@ -1,0 +1,13 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">
+        <%= Course.find(session[:course_id]).name %> - New Assignment
+        <%= link_to 'Back', course_path(session[:course_id]), class:"btn btn--primary2--header--button" %>
+    </h5>
+    <div class="card-body">
+        <p class="card--text">Please choose what type of assignment you want to create!</p>
+        <%= form_with(url: choose_type_path(@types), method: :get, local: true) do |form| %>
+            <%= form.select :type, @types.to_a, {}, {class: "form-select form-select-md mb-3 form--select"} %>
+            <%= form.submit "Continue", class: "btn btn--primary2" %>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Essay:</strong>
+  <%= @essay_solution.essay_id %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @essay_solution.student_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @essay_solution.content %>
+</p>
+
+<p>
+  <strong>Attachments:</strong>
+  <%= @essay_solution.attachments %>
+</p>
+
+<%= link_to 'Edit', edit_essay_solution_path(@essay_solution) %> |
+<%= link_to 'Back', essay_solutions_path %>

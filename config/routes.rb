@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :essay_solutions
   resources :class_registers
-  resources :users_assignments
   resources :quiz_answers
   resources :quiz_questions
   resources :attachments
   resources :essays
   resources :quizes
-  resources :assignments
   resources :lessons
   resources :resources
   resources :users_courses
@@ -29,4 +28,6 @@ Rails.application.routes.draw do
   get 'courses/remove_user_from_course/:id', to: "courses#remove_user_from_course", :as => 'courses_remove_user_from_course'
   get 'courses/remove/:id', to: "courses#remove", :as => 'courses_remove'
   get 'users/registrations/save_updates', to: "users/registrations#save_updates", :as => 'users_registrations_save_updates'
+  get 'assignment_creation', to: "home#assignment_creation", :as => 'assignment_creation'
+  get 'choose_type', to: "home#choose_type", :as => 'choose_type'
 end

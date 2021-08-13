@@ -1,0 +1,2 @@
+class EssaySolution < ApplicationRecord
+end

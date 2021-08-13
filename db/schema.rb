@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_125541) do
+ActiveRecord::Schema.define(version: 2021_08_13_172033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "assignments", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "deadline"
-    t.datetime "submit_time"
-    t.integer "course_id"
-    t.integer "assignmentable_id"
-    t.string "assignmentable_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "attachments", force: :cascade do |t|
     t.string "name"
@@ -52,12 +40,23 @@ ActiveRecord::Schema.define(version: 2021_08_12_125541) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "essay_solutions", force: :cascade do |t|
+    t.integer "essay_id"
+    t.integer "student_id"
+    t.text "content"
+    t.text "attachments"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "submit_time"
+  end
+
   create_table "essays", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deadline"
+    t.integer "course_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -89,6 +88,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_125541) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deadline"
+    t.integer "course_id"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -125,14 +126,6 @@ ActiveRecord::Schema.define(version: 2021_08_12_125541) do
     t.index ["email", "school_id"], name: "index_users_on_email_and_school_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_users_on_school_id"
-  end
-
-  create_table "users_assignments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "assignment_id"
-    t.boolean "is_turned_in"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users_courses", force: :cascade do |t|

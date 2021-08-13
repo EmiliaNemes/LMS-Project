@@ -1,0 +1,42 @@
+<%= form_with(model: essay_solution) do |form| %>
+  <% if essay_solution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(essay_solution.errors.count, "error") %> prohibited this essay_solution from being saved:</h2>
+
+      <ul>
+        <% essay_solution.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :essay_id %>
+    <%= form.number_field :essay_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_id %>
+    <%= form.number_field :student_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :attachments %>
+    <%= form.text_area :attachments %>
+  </div>
+
+  <div class="field space--field">
+    <%= form.label :submit_time %>
+    <%= form.datetime_select :submit_time %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

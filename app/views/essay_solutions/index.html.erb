@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Essay Solutions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Essay</th>
+      <th>Student</th>
+      <th>Content</th>
+      <th>Attachments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @essay_solutions.each do |essay_solution| %>
+      <tr>
+        <td><%= essay_solution.essay_id %></td>
+        <td><%= essay_solution.student_id %></td>
+        <td><%= essay_solution.content %></td>
+        <td><%= essay_solution.attachments %></td>
+        <td><%= link_to 'Show', essay_solution %></td>
+        <td><%= link_to 'Edit', edit_essay_solution_path(essay_solution) %></td>
+        <td><%= link_to 'Destroy', essay_solution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Essay Solution', new_essay_solution_path %>

@@ -22,6 +22,7 @@ class QuizesController < ApplicationController
   # POST /quizes or /quizes.json
   def create
     @quize = Quize.new(quize_params)
+    @quize.course_id = session[:course_id]
 
     respond_to do |format|
       if @quize.save
@@ -64,6 +65,6 @@ class QuizesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quize_params
-      params.require(:quize).permit(:name, :description, :student_id)
+      params.require(:quize).permit(:name, :description, :deadline, :submit_time, :course_id)
     end
 end

@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field space--field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="field space--field">
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= form.label :student_id %>
-    <%= form.number_field :student_id %>
+  <div class="field space--field">
+    <%= form.label :deadline %>
+    <%= form.datetime_select :deadline %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn--primary2--res--right" %>
   </div>
 <% end %>
