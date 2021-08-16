@@ -24,7 +24,6 @@ class EssaysController < ApplicationController
   def create
     @essay = Essay.new(essay_params)
     @essay.course_id = session[:course_id]
-    puts "### Essay Inspect: " + @essay.inspect
 
     respond_to do |format|
       if @essay.save
@@ -54,9 +53,10 @@ class EssaysController < ApplicationController
     @users_of_course = UsersCourse.where(:course_id => session[:course_id])
     @users_of_course.each do |uc|
       @essay_solution = EssaySolution.new(:essay_id => @essay.id, :student_id => uc.user_id)
-      
-      puts "## INSPECT: " + @essay_solution.inspect
-      #@essay_solution.save
+    
+      if !@essay_solution.save
+        redirect_back(fallback_location: root_path) #notice with error message
+      end
     end
   end
 

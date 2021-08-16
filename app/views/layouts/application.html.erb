@@ -28,17 +28,18 @@
     <% unless flash.empty? %>
       <script type="text/javascript">
           <% flash.each do |f| %>
-        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
-        toastr['<%= type %>']('<%= f[1] %>');
-      <% end %>
+            <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+              toastr['<%= type %>']('<%= f[1] %>');
+          <% end %>
       </script>
-<% end %>
+    <% end %>
 
     <%= render 'home/navbar' %>
     
     <% if user_signed_in? %>
       <div id="wrapper">
         <div class="overlay"></div>
+
         <%= render 'home/sidebar' %>
         <div id="page-content-wrapper" >
           <div class="container" >

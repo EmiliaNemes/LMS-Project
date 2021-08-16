@@ -14,7 +14,10 @@
       <li><%= link_to "Courses", courses_path, class:"sidebar--item--design" %></li>
       <li><%= link_to "All Users", home_show_users_path, class:"sidebar--item--design" %></li>
       <li class="dropdown">
-        <a class="dropdown-toggle sidebar--item--design" href="#" data-bs-toggle="dropdown" id="dropLink" aria-expanded="false">Add User<span class="caret"></span></a>
+        <a class="dropdown-toggle sidebar--item--design" href="#" data-bs-toggle="dropdown" id="dropLink" aria-expanded="false">
+          Add User
+          <span class="caret"></span>
+        </a>
         
         <ul class="dropdown-menu" aria-labelledby="dropLink">
           <li><%= link_to 'Add Manually', users_adding_add_users_manually_path, class:"dropdown-item" %></li>
@@ -22,6 +25,12 @@
         </ul>
       </li>
       <li><%= link_to "Grades", root_path, class:"sidebar--item--design" %></li>
+    <% elsif current_user.teacher == true %>
+      <li><%= link_to "Courses", courses_path, class:"sidebar--item--design" %></li>
+    <% elsif current_user.student == true %>
+      <li><%= link_to "Courses", courses_path, class:"sidebar--item--design" %></li>
     <% end %>
+
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
   </ul>
 </nav>

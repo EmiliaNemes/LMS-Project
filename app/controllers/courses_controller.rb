@@ -1,11 +1,20 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy users_of_course add_users_to_course remove ] 
   before_action :set_all_users, only: %i[ add_user ] 
-  #before_action :set_courses_users, only: %i[ all_users ] 
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    if current_user.administrator == true
+      @schools_courses = Course.where(:school_id => session[:school_id])
+    else
+      @users_courses = UsersCourse.where(:user_id => current_user.id)
+      @course_ids = Array.new
+      @users_courses.each do |uc|
+        @course_ids.push(uc.course_id)
+      end
+      @schools_courses = Course.where(id: @course_ids, :school_id => session[:school_id])
+    end
+ 
   end
 
   # GET /courses/1 or /courses/1.json
@@ -26,6 +35,7 @@ class CoursesController < ApplicationController
   # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
+    @course.school_id = session[:school_id]
 
     respond_to do |format|
       if @course.save
@@ -67,7 +77,6 @@ class CoursesController < ApplicationController
 
   def users_of_course
     @users_course_from_course = UsersCourse.where(:course_id => @course.id)
-    #puts @users_course_from_course.inspect
 
     @users = Array.new
     @users_course_from_course.each do |user_course|
@@ -116,7 +125,7 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:name, :description)
+      params.require(:course).permit(:name, :description, :school_id)
     end
 
     def set_all_users

@@ -3,17 +3,17 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
     <h5 class="card-header card--header--title">All Courses <%= link_to 'New Course', new_course_path, class:"btn btn--primary2--header--button"  %></h5>
     <div class="card-body">
-      <div class="row row-cols-1 row-cols-md-4 g-4">
-        <% @courses.each do |course| %>
-          <div class="col">
-            <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
-              <div class="card-header card--header"><%= link_to course.name, course, class:"card--header--link" %></div>
-              <div class="card-body">
-                <p class="card-text"><%= course.description %></p>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <% @schools_courses.each do |course| %>
+            <div class="col">
+              <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
+                <div class="card-header card--header"><%= link_to course.name, course, class:"card--header--link" %></div>
+                <div class="card-body">
+                  <p class="card-text"><%= course.description %></p>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
     </div>
 </div>

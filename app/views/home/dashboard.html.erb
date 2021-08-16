@@ -1,10 +1,14 @@
 <p id="notice"><%= notice %></p>
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
+     <div class="col">
         <div class="card text-white bg-success mb-3" style="max-width: 35rem;">
             <div class="card-header card--header"><%= link_to "Courses", courses_path, class:"card--header--link" %></div>
             <div class="card-body">
-                <p class="card-text">All courses of this school: <%= @current_school %></p>
+                <% if current_user.administrator == true %>
+                    <p class="card-text">All courses of this school: <%= School.find(session[:school_id]).name %></p>
+                <% else %>
+                    <p class="card-text">All courses</p>
+                 <% end %>
             </div>
         </div>
     </div>
