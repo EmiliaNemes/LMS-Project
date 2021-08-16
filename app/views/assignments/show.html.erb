@@ -1,0 +1,37 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">All Assignments 
+        <% if current_user.administrator == true || current_user.teacher == true %>
+            <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
+            <%= link_to 'New Assignment', assignment_creation_path(), class:"btn btn--primary2--header--button"  %>
+        <% end %>
+    </h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <%@assignments.each do |assig| %>
+                    <tr>
+                        <td><%= assig.name %></td>
+                        <td><%= assig.deadline %></td>
+                        <% if EssaySolution.find_by_essay_id_and_student_id(assig.id, current_user.id).submit_time != nil %>
+                            <td>Submitted</td>
+                        <% elsif Time.parse(@current_date.to_s) > Time.parse(assig.deadline.to_s) %>
+                            <td><b>Overdue</b></td>
+                        <% else %>
+                            <td></td>
+                        <% end %>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

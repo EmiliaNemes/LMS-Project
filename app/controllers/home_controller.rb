@@ -23,22 +23,4 @@ class HomeController < ApplicationController
     @users = User.where(:school_id => current_user.school_id)
   end
 
-  def assignment_creation
-    @types = Array.[](nil, "Essay", "Quiz")
-  end
-
-  def choose_type
-    if params[:type]
-        if params[:type] == "Essay"
-          redirect_to new_essay_path
-        elsif params[:type] == "Quiz"
-          redirect_to new_quize_path 
-        else
-          redirect_to creation_path, alert: 'Please choose a type!'
-        end
-    else
-      redirect_to creation_path, alert: 'Please choose a type!'
-    end
-  end
-
 end

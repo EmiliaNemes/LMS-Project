@@ -1,0 +1,54 @@
+<h5 class="card-header card--header--title">
+    <%=@course.name %>
+    <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Edit', edit_course_path(@course), class:"btn btn--primary2--header--button"  %>
+    <%= link_to 'Delete', courses_remove_path(@course), method: :get, class:"btn btn--primary2--header--button", data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Attendants', courses_users_of_course_path(@course), class:"btn btn--primary2--header--button"  %>
+    <%= link_to 'Assignments', assignments_show_path(), class:"btn btn--primary2--header--button"  %>
+    <%= link_to 'Add Resource', new_resource_path(), class:"btn btn--primary2--header--button"  %>
+</h5>
+<div class="card-body">
+  <p>
+    <strong>Description:</strong>
+    <%= @course.description %>
+  </p>
+
+  <p><strong>Resources:</strong>
+    <div class="tab">
+      <% @all_resources.each do |res| %>
+        <li>
+          <%= link_to '', :onclick => "get_metadata('#{res.url}')" do %>
+            <%= res.name %><br  />
+          <% end %>
+        </li>
+      <% end %>
+    </div>
+    <%= link_to 'Resources with Details', resources_path(), class:"btn btn--primary2--res--small" %>
+  </p>
+</div>
+
+<script>
+  function get_metadata(url){
+    $.get( url + "/metadata", function( data ){
+      get_file(data.filename,data.mimetype,data.isWriteable,data.size,url);
+    });
+  }
+
+  function get_file(filename, mimetype, isWriteable, size, url){
+    filepicker.setKey("A00aKRuy5Sj2VJTCVm8Koz");
+    var blob = {
+      url: url,
+      filename: filename,
+      mimetype: mimetype,
+      isWriteable: isWriteable,
+      size: size
+    };  
+
+    filepicker.exportFile(
+      blob,
+      function(Blob){
+        console.log(Blob.url);
+      }
+    );
+  }
+</script>

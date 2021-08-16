@@ -1,7 +1,9 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
     <h5 class="card-header card--header--title">All Attendants 
         <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
-        <%= link_to 'Add Attendants', courses_add_users_to_course_path(@course), class:"btn btn--primary2--header--button"  %>
+        <% if current_user.administrator == true || current_user.teacher == true %>
+            <%= link_to 'Add Attendants', courses_add_users_to_course_path(@course), class:"btn btn--primary2--header--button"  %>
+        <% end %>
     </h5>
     <div class="card-body">
         <div class="table-responsive">
@@ -14,7 +16,9 @@
                         <th>Administrator</th>
                         <th>Teacher</th>
                         <th>Student</th>
-                        <th>Remove</th>
+                        <% if current_user.administrator == true || current_user.teacher == true %>
+                            <th>Remove</th>
+                        <% end %> 
                     </tr>
                 </thead>
 
@@ -27,11 +31,13 @@
                         <td><%= user.administrator %></td>
                         <td><%= user.teacher %></td>
                         <td><%= user.student %></td>
-                        <td>
-                            <% if UsersCourse.find_by_course_id_and_user_id(@course.id, user.id) != nil%>
-                                <%= link_to '-', courses_remove_user_from_course_url(id: @course, user_id: user), method: :get, class:"btn btn--primary2--table" %>
-                            <% end %>
-                        </td>
+                        <% if current_user.administrator == true || current_user.teacher == true %>
+                            <td>
+                                <% if UsersCourse.find_by_course_id_and_user_id(@course.id, user.id) != nil%>
+                                    <%= link_to '-', courses_remove_user_from_course_url(id: @course, user_id: user), method: :get, class:"btn btn--primary2--table" %>
+                                <% end %>
+                            </td>
+                        <% end %>
                     </tr>
                     <% end %>
                 </tbody>

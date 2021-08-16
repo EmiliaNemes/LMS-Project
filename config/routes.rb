@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'courses/remove_user_from_course/:id', to: "courses#remove_user_from_course", :as => 'courses_remove_user_from_course'
   get 'courses/remove/:id', to: "courses#remove", :as => 'courses_remove'
   get 'users/registrations/save_updates', to: "users/registrations#save_updates", :as => 'users_registrations_save_updates'
-  get 'assignment_creation', to: "home#assignment_creation", :as => 'assignment_creation'
-  get 'choose_type', to: "home#choose_type", :as => 'choose_type'
+  get 'assignment_creation', to: "assignments#assignment_creation", :as => 'assignment_creation'
+  get 'choose_type', to: "assignments#choose_type", :as => 'choose_type'
+  get 'assignments/show', to: "assignments#show", :as => 'assignments_show'
 end
