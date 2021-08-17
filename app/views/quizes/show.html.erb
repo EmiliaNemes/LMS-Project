@@ -1,14 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @quize.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @quize.description %>
-</p>
-
-<%= link_to 'Edit', edit_quize_path(@quize) %> |
-<%= link_to 'Back', quizes_path %>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title">
+    <%= @quize.name %>
+    <%= link_to 'Back', quizes_path, class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Edit', edit_quize_path(@quize), class:"btn btn--primary2--header--button" %>
+  </h5>
+  <div class="card-body">
+    <%= @quize.description %>
+  </div>
+</div>

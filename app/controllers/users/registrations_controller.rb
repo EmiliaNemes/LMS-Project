@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #skip_before_action :verify_authenticity_token # without this Heroku fails
     include ApplicationHelper
     before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+    before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -62,48 +62,36 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     #super
-    
-    #user.first_name = params[:first_name] if params[:first_name] != nil
-    #user.last_name = params[:last_name] if params[:last_name] != nil
-    #user.password = params[:password] if params[:password] != nil
+    #params[:school] = params[:user].delete(:school_attributes)
 
-    #puts "USER:" + user.inspect
-    #respond_to do |format|
-    #  if @user.update(user)
-    #    format.html { redirect_to home_dashboard_path, notice: "Course was successfully updated." }
-    #  end
-    #end
+    puts "INTRAAAA"
+    #puts "####   USER: " + params[:school].inspect
+=begin
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to home_dashboard_path, notice: "Course was successfully updated." }
+      end
+    end
+=end
   end
 
+=begin
   def save_updates
-    #puts "@@@@@@@@@@  YEAH EDIT"
-
-    #puts "uuu " + @user.inspect
     user = @user
 
-    #puts "### DATA: " + params[:user][:first_name]
-
-    #puts "**** USER:" + user.inspect
     respond_to do |format|
       if @user.update(user)
         redirect_to home_dashboard_path, notice: "Course was successfully updated."
       end
     end
   end
+=end
 
   # PUT /resource
   def update
-    super
-    #puts "@@@@@@@@@@  NOW UPDATE"
-    #puts "FIRST: " + params[:first_name]
-    #puts "LAST: " + params[:last_name]
-
-    #user = @user
-    #user.first_name = params[:first_name] if params[:first_name] != nil
-    #user.last_name = params[:last_name] if params[:last_name] != nil
-    #user.password = params[:password] if params[:password] != nil
-
-    #puts "USER:" + user.inspect
+    @user.update(params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student))
+    sign_in(@user)
+    redirect_to home_dashboard_path, notice: "Profile was successfully updated."
   end
 
   # DELETE /resource
@@ -120,16 +108,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-   protected
+    protected
   # If you have extra params to permit, append them to the sanitizer.
-   def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student, :school_id, school_attributes: [:name, :subdomain]])
-   end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student, :school_id, school_attributes: [:name, :subdomain]])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -140,4 +128,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  #def user_params
+    #params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :administrator, :teacher, :student, :school_id, school_attributes: [:name, :subdomain])
+  #end
 end

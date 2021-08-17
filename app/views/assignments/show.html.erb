@@ -6,7 +6,7 @@
         <% end %>
     </h5>
     <div class="card-body">
-        <h5>Essays</h5>
+    <h5>Essays</h5>
         <div class="table-responsive">
             <table class="table">
                 <thead class="table">
@@ -47,7 +47,7 @@
             </table>
         </div>
 
-        <!--
+        <br /><br />
         <h5>Quizes</h5>
         <div class="table-responsive">
             <table class="table">
@@ -60,33 +60,34 @@
                 </thead>
 
                 <tbody>
-                    <%# @quizes.each do |quiz| %>
+                    <%@quizes.each do |quiz| %>
                         <tr>
-                            <%# if current_user.administrator == true || current_user.teacher == true %>
-                                <td><%#= link_to quiz.name, essay_solutions_path() %></td>
-                                <td><%#= quiz.deadline %></td>
-                                <%# if Time.parse(@current_date.to_s) > Time.parse(quiz.deadline.to_s) %>
+                            <% if current_user.administrator == true || current_user.teacher == true %>
+                                <% @current_quiz = quiz %>
+                                <td><%= link_to quiz.name, quiz %></td>
+                                <td><%= quiz.deadline %></td>
+                                <% if Time.parse(@current_date.to_s) > Time.parse(quiz.deadline.to_s) %>
                                     <td><b>Overdue</b></td>
-                                <%# else %>
+                                <% else %>
                                     <td></td>
-                                <%# end %>
-                            <%# else %>
-                                <td><%#= link_to quiz.name, edit_essay_solution_path(@essay_solution) %></td>
-                                <td><%#= quiz.deadline %></td>
+                                <% end %>
+                            <% else %>
+                                <td><%= link_to quiz.name, quiz %></td>
+                                <td><%= quiz.deadline %></td>
                                 <%# if @essay_solution.submit_time != nil %>
-                                    <td>Submitted</td>
-                                <%# elsif Time.parse(@current_date.to_s) > Time.parse(quiz.deadline.to_s) %>
+                                    <!--<td>Submitted</td>-->
+                                <% if Time.parse(@current_date.to_s) > Time.parse(quiz.deadline.to_s) %>
                                     <td><b>Overdue</b></td>
-                                <%# else %>
+                                <% else %>
                                     <td></td>
-                                <%# end %>
-                            <%# end %>
+                                <% end %>
+                            <% end %>
                         </tr>
-                    <%# end %>
+                    <% end %>
                 </tbody>
             </table>
         </div>
 
-        -->
+        
     </div>
 </div>
