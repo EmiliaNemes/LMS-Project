@@ -1,6 +1,8 @@
-<h1>Editing Essay Solution</h1>
-
-<%= render 'form', essay_solution: @essay_solution %>
-
-<%= link_to 'Show', @essay_solution %> |
-<%= link_to 'Back', essay_solutions_path %>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title"><%= Essay.find(@essay_solution.essay_id).name %> 
+    <%= link_to 'Back', assignments_show_path, class:"btn btn--primary2--header--button" %>
+  </h5>
+  <div class="card-body">
+    <%= render 'form', essay_solution: @essay_solution %>
+  </div>
+</div>

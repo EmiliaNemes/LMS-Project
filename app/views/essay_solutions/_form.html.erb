@@ -11,32 +11,105 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :essay_id %>
-    <%= form.number_field :essay_id %>
-  </div>
+  <h5>You can add <b>attachments</b> or you can provide your answer directly in the <b>text-box</b>.</h5>
+  <p><b><u>Note:</u></b> The newly added attachments <i>overwrite</i> the existing ones.</p>
 
-  <div class="field">
-    <%= form.label :student_id %>
-    <%= form.number_field :student_id %>
-  </div>
+  <% if Time.parse(@current_date.to_s) < Time.parse(Essay.find(essay_solution.essay_id).deadline.to_s) %>
+    <div id="my_form">
+      <button class="btn btn--primary2--res2" type="button" onclick="files(event)">Upload Attachments</button>
+      <br  />
+      <p><strong></strong>
+        <div class="tab">
+          <% @attachments.each do |att| %>
+            <li>
+              <%= link_to '', :onclick => "get_metadata('#{att}')" do %>
+                File
+                <%#= data.filename %><br  />
+              <% end %>
+            </li>
+          <% end %>
+        </div>
+      </p>
+      <%= form.hidden_field :attachments, id:"hidden_input_files" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+    <div class="field">
+      <%= form.text_area :content, cols:100, rows:20 %>
+    </div>
+  <% else %>
+    <p>This assignment is overdue. You cannot edit your submission.</p>
+    <div id="my_form">
+      <button class="btn btn--primary2--res2" type="button" onclick="files(event)" disabled = true >Upload Attachments</button>
+      <br  />
+      <p><strong></strong>
+        <div class="tab">
+          <% @attachments.each do |att| %>
+            <li>
+              <%= link_to '', :onclick => "get_metadata('#{att}')" do %>
+                File
+                <%#= data.filename %><br  />
+              <% end %>
+            </li>
+          <% end %>
+        </div>
+      </p>
+      <%= form.hidden_field :attachments, id:"hidden_input_files" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :attachments %>
-    <%= form.text_area :attachments %>
-  </div>
-
-  <div class="field space--field">
-    <%= form.label :submit_time %>
-    <%= form.datetime_select :submit_time %>
-  </div>
+    <div class="field">
+      <%= form.text_area :content, cols:100, rows:20, readonly: true %>
+    </div>
+  <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save", class:"btn btn--primary2--res--right" %>
   </div>
 <% end %>
+
+<script>
+  function files(){
+    event.preventDefault();
+    var file_key = "A00aKRuy5Sj2VJTCVm8Koz";
+    filepicker.setKey(file_key);
+          
+    filepicker.pickMultiple(
+      {
+        mimetype: ['image/*', 'text/*'],
+        maxFiles: 5
+      },
+      function(Blobs){
+        var my_blobs = [];
+        for(var i = 0; i < Blobs.length; i++){
+          my_blobs.push(Blobs[i].url);
+          $("#hidden_input_files").val(my_blobs);
+          $( "#my_form" ).append( '<p><span class="glyphicon glyphicon-file"></span><b>' + Blobs[i].filename + '</b></p>'  );
+        }
+      },
+      function(error){}
+    );
+  }
+
+  function get_metadata(url){
+    $.get( url + "/metadata", function( data ){
+      get_file(data.filename,data.mimetype,data.isWriteable,data.size,url);
+    });
+  }
+
+  function get_file(filename, mimetype, isWriteable, size, url){
+    filepicker.setKey("A00aKRuy5Sj2VJTCVm8Koz");
+    var blob = {
+      url: url,
+      filename: filename,
+      mimetype: mimetype,
+      isWriteable: isWriteable,
+      size: size
+    };  
+
+    filepicker.exportFile(
+      blob,
+      function(Blob){
+        console.log(Blob.url);
+      }
+    );
+  }
+</script>

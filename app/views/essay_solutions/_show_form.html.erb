@@ -1,0 +1,58 @@
+<%= form_with(model: essay_solution) do |form| %>
+    <% if essay_solution.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(essay_solution.errors.count, "error") %> prohibited this essay_solution from being saved:</h2>
+            <ul>
+                <% essay_solution.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div id="my_form">
+      <p><strong>Attachments: </strong>
+        <div class="tab">
+          <% @attachments.each do |att| %>
+            <li>
+              <%= link_to '', :onclick => "get_metadata('#{att}')" do %>
+                File
+                <%#= data.filename %><br  />
+              <% end %>
+            </li>
+          <% end %>
+        </div>
+      </p>
+      <%= form.hidden_field :attachments, id:"hidden_input_files" %>
+    </div>
+
+    <div class="field">
+      <%= form.text_area :content, cols:100, rows:20, readonly: true %>
+    </div>
+<% end %>
+
+<script>
+  function get_metadata(url){
+    $.get( url + "/metadata", function( data ){
+      get_file(data.filename,data.mimetype,data.isWriteable,data.size,url);
+    });
+  }
+
+  function get_file(filename, mimetype, isWriteable, size, url){
+    filepicker.setKey("A00aKRuy5Sj2VJTCVm8Koz");
+    var blob = {
+      url: url,
+      filename: filename,
+      mimetype: mimetype,
+      isWriteable: isWriteable,
+      size: size
+    };  
+
+    filepicker.exportFile(
+      blob,
+      function(Blob){
+        console.log(Blob.url);
+      }
+    );
+  }
+</script>

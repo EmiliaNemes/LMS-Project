@@ -1,9 +1,8 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
-  <h5 class="card-header card--header--title">All Assignments 
-    <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
+  <h5 class="card-header card--header--title"><%= Essay.find(params[:id]).name %>
+    <%= link_to 'Back', assignments_show_path(), class:"btn btn--primary2--header--button" %>
   </h5>
 
-  <h1>Essay Solutions</h1>
   <div class="card-body">
     <h5>Essays</h5>
     <div class="table-responsive">
@@ -18,9 +17,9 @@
           </thead>
 
           <tbody>
-            <% @essay_solutions.each do |essay_solution| %>
+            <% @essay_solutions_for_essay.each do |essay_solution| %>
               <tr>
-                <% user = User.find(essay_solution.student_id)%>
+                <% user = User.find(essay_solution.student_id) %>
                 <td><%= user.first_name  + " " + user.last_name %></td>
                 <td><%= link_to 'See', essay_solution %></td>
                 <td></td>

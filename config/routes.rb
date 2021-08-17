@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :class_registers
   resources :quiz_answers
   resources :quiz_questions
-  resources :attachments
   resources :essays
   resources :quizes
   resources :lessons
@@ -31,4 +30,5 @@ Rails.application.routes.draw do
   get 'assignment_creation', to: "assignments#assignment_creation", :as => 'assignment_creation'
   get 'choose_type', to: "assignments#choose_type", :as => 'choose_type'
   get 'assignments/show', to: "assignments#show", :as => 'assignments_show'
+  get 'index_for_essay/:id', to: "essay_solutions#index_for_essay", :as => 'index_for_essay'
 end

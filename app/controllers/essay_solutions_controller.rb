@@ -37,8 +37,9 @@ class EssaySolutionsController < ApplicationController
   # PATCH/PUT /essay_solutions/1 or /essay_solutions/1.json
   def update
     respond_to do |format|
+      @essay_solution.submit_time = DateTime.now.utc
       if @essay_solution.update(essay_solution_params)
-        format.html { redirect_to @essay_solution, notice: "Essay solution was successfully updated." }
+        format.html { redirect_to assignments_show_path(), notice: "Essay solution was successfully updated." }
         format.json { render :show, status: :ok, location: @essay_solution }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,10 +57,20 @@ class EssaySolutionsController < ApplicationController
     end
   end
 
+  def index_for_essay
+    @essay_solutions_for_essay = EssaySolution.where(:essay_id => params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_essay_solution
       @essay_solution = EssaySolution.find(params[:id])
+      if(@essay_solution.attachments != nil)
+        @attachments = @essay_solution.attachments.split(",")
+      else
+        @attachments = Array.new
+      end
+      @current_date = DateTime.now.utc
     end
 
     # Only allow a list of trusted parameters through.

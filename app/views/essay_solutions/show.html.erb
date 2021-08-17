@@ -1,24 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Essay:</strong>
-  <%= @essay_solution.essay_id %>
-</p>
-
-<p>
-  <strong>Student:</strong>
-  <%= @essay_solution.student_id %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @essay_solution.content %>
-</p>
-
-<p>
-  <strong>Attachments:</strong>
-  <%= @essay_solution.attachments %>
-</p>
-
-<%= link_to 'Edit', edit_essay_solution_path(@essay_solution) %> |
-<%= link_to 'Back', essay_solutions_path %>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title">
+    <% user = User.find(@essay_solution.student_id) %>
+    <%= Essay.find(@essay_solution.essay_id).name %> - <%= user.first_name  + " " + user.last_name %>
+    <%= link_to 'Back', assignments_show_path, class:"btn btn--primary2--header--button" %>
+  </h5>
+  <div class="card-body">
+    <%= render 'show_form', essay_solution: @essay_solution %>
+  </div>
+</div>

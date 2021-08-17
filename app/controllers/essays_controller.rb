@@ -27,7 +27,7 @@ class EssaysController < ApplicationController
 
     respond_to do |format|
       if @essay.save
-        format.html { redirect_to @essay, notice: "Essay was successfully created." }
+        format.html { redirect_to assignments_show_path(), notice: "Essay was successfully created." }
         format.json { render :show, status: :created, location: @essay }
       else
         format.html { render :new, status: :unprocessable_entity }

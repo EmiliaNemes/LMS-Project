@@ -1,5 +1,5 @@
 <h5 class="card-header card--header--title">
-    <%=@course.name %>
+    <%= @course.name %>
     <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
     <%= link_to 'Edit', edit_course_path(@course), class:"btn btn--primary2--header--button"  %>
     <%= link_to 'Delete', courses_remove_path(@course), method: :get, class:"btn btn--primary2--header--button", data: { confirm: 'Are you sure?' } %>

@@ -1,6 +1,6 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
     <h5 class="card-header card--header--title">All Attendants 
-        <%= link_to 'Back', courses_path, class:"btn btn--primary2--header--button" %>
+        <%= link_to 'Back', Course.find(session[:course_id]), class:"btn btn--primary2--header--button" %>
         <% if current_user.administrator == true || current_user.teacher == true %>
             <%= link_to 'Add Attendants', courses_add_users_to_course_path(@course), class:"btn btn--primary2--header--button"  %>
         <% end %>
