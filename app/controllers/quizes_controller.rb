@@ -73,8 +73,6 @@ class QuizesController < ApplicationController
   end
 
   def solution
-    puts "&&&  " + params[:answers].inspect 
-
     @current_questions = QuizQuestion.where(:quize_id => session[:quiz_id])
     contor = 0
     @current_questions.each do |quest|
@@ -96,12 +94,11 @@ class QuizesController < ApplicationController
       end
     end
 
-    puts "#NR of ctr: " + contor.to_s
-    @quiz_solution = QuizSolution.where(:student_id => session[:user_id])
-    @quiz_solution.grade = contor*10/@current_questions.length()
+    @quiz_solution = QuizSolution.find_by_student_id_and_quize_id(current_user.id, session[:quiz_id])
+    grade = contor*9/@current_questions.length() + 1
 
-    @quiz_solution.update
-    redirect_to home_dashboard_path
+    @quiz_solution.update_attribute(:grade, grade)
+    redirect_to assignments_show
   end
 
   private

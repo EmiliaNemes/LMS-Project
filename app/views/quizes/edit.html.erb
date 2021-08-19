@@ -1,6 +1,10 @@
-<h1>Editing Quize</h1>
-
-<%= render 'form', quize: @quize %>
-
-<%= link_to 'Show', @quize %> |
-<%= link_to 'Back', quizes_path %>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title">
+    <%= "Edit " + @quize.name %>
+    <%= link_to 'Back', quizes_path, class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Show', @quize %>
+  </h5>
+  <div class="card-body">
+    <%= render 'form', quize: @quize %>
+  </div>
+</div>

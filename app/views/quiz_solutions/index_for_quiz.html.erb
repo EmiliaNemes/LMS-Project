@@ -1,0 +1,32 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title"><%= Quize.find(params[:id]).name %>
+    <%= link_to 'Back', assignments_show_path(), class:"btn btn--primary2--header--button" %>
+  </h5>
+
+  <div class="card-body">
+    <h5>Quiz Solutions</h5>
+    <div class="table-responsive">
+      <table class="table">
+          <thead class="table">
+            <tr>
+              <th>Student</th>
+              <!--<th>Solution</th>-->
+              <th>Grade</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @quiz_solutions_for_quiz.each do |quiz_solution| %>
+              <tr>
+                <% user = User.find(quiz_solution.student_id) %>
+                <td><%= user.first_name  + " " + user.last_name %></td>
+                <!--<td><%#= link_to 'See', quiz_solution %></td>-->
+                <td><%= quiz_solution.grade %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

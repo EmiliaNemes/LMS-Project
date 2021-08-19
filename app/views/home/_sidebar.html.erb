@@ -24,13 +24,13 @@
           <li><%= link_to 'Add From File', users_adding_add_users_from_file_path, class:"dropdown-item" %></li>
         </ul>
       </li>
-      <li><%= link_to "Grades", root_path, class:"sidebar--item--design" %></li>
+      <!--<li><%#= link_to "Grades", root_path, class:"sidebar--item--design" %></li>-->
     <% elsif current_user.teacher == true %>
       <li><%= link_to "Courses", courses_path, class:"sidebar--item--design" %></li>
     <% elsif current_user.student == true %>
       <li><%= link_to "Courses", courses_path, class:"sidebar--item--design" %></li>
     <% end %>
 
-    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+    <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"sidebar--item--design" %></li>
   </ul>
 </nav>

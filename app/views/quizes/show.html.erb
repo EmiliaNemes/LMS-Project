@@ -1,9 +1,12 @@
 <div class="card" style="max-width: 80rem; min-height: 30rem">
   <h5 class="card-header card--header--title">
     <%= @quize.name %>
-    <%= link_to 'Back', quizes_path, class:"btn btn--primary2--header--button" %>
-    <%= link_to 'Edit', edit_quize_path(@quize), class:"btn btn--primary2--header--button" %>
-    <%= link_to 'Add questions', new_quiz_question_path(), class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Back', assignments_show_path(), class:"btn btn--primary2--header--button" %>
+    <% if current_user.administrator == true || current_user.teacher == true %>
+      <%= link_to 'Edit', edit_quize_path(@quize), class:"btn btn--primary2--header--button" %>
+      <%= link_to 'See solutions', index_for_quiz_path(@quize), class:"btn btn--primary2--header--button" %>
+      <%= link_to 'Add questions', new_quiz_question_path(), class:"btn btn--primary2--header--button" %>
+    <% end %>
   </h5>
   <div class="card-body">
     <h5><b>Description: </b></h5>
@@ -33,7 +36,7 @@
       </div>
     <% else %>
       <div>
-      <%= form_tag quiz_solution_path, method: :get do %>
+      <%= form_tag solution_path, method: :get do %>
         <% @quiz_questions.each do |question| %>
           <b><%= question.question %></b><br />
             <% QuizAnswer.where(:quiz_question_id => question.id).each do |answer| %>

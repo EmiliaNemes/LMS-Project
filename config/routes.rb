@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   get 'choose_type', to: "assignments#choose_type", :as => 'choose_type'
   get 'assignments/show', to: "assignments#show", :as => 'assignments_show'
   get 'index_for_essay/:id', to: "essay_solutions#index_for_essay", :as => 'index_for_essay'
+  get 'index_for_quiz/:id', to: "quiz_solutions#index_for_quiz", :as => 'index_for_quiz'
   get 'solution', to: "quizes#solution", :as => 'solution'
 end

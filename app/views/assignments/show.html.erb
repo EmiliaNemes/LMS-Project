@@ -59,6 +59,7 @@
                         <th>Name</th>
                         <th>Due Date</th>
                         <th>Status</th>
+                        <th>Grade</th>
                     </tr>
                 </thead>
 
@@ -74,7 +75,7 @@
                                 <% else %>
                                     <td></td>
                                 <% end %>
-                                <td><%= QuizSolution.find_by_student_id_and_quize_id(current_user.id, quiz.id).grade %></td>
+                                <td><%#= QuizSolution.find_by_student_id_and_quize_id(current_user.id, quiz.id).grade %></td>
                             <% else %>
                                 <td><%= link_to quiz.name, quiz %></td>
                                 <td><%= quiz.deadline %></td>

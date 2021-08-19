@@ -56,6 +56,10 @@ class QuizSolutionsController < ApplicationController
     end
   end
 
+  def index_for_quiz
+    @quiz_solutions_for_quiz = QuizSolution.where(:quize_id => params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz_solution
