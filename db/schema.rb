@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_085841) do
+ActiveRecord::Schema.define(version: 2021_08_19_090905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_085841) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "submit_time"
+    t.float "grade"
   end
 
   create_table "essays", force: :cascade do |t|
@@ -62,16 +63,25 @@ ActiveRecord::Schema.define(version: 2021_08_17_085841) do
   end
 
   create_table "quiz_answers", force: :cascade do |t|
-    t.integer "question_id"
+    t.integer "quiz_question_id"
     t.string "answer"
     t.boolean "is_correct"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_question_id"], name: "index_quiz_answers_on_quiz_question_id"
   end
 
   create_table "quiz_questions", force: :cascade do |t|
-    t.integer "quiz_id"
+    t.integer "quize_id"
     t.string "question"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quiz_solutions", force: :cascade do |t|
+    t.integer "quize_id"
+    t.integer "student_id"
+    t.float "grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

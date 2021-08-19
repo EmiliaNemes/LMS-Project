@@ -15,7 +15,7 @@
   <tbody>
     <% @quiz_answers.each do |quiz_answer| %>
       <tr>
-        <td><%= quiz_answer.question_id %></td>
+        <td><%= quiz_answer.quiz_question_id %></td>
         <td><%= quiz_answer.answer %></td>
         <td><%= quiz_answer.is_correct %></td>
         <td><%= link_to 'Show', quiz_answer %></td>

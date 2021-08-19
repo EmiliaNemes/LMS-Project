@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :question_id %>
-    <%= form.number_field :question_id %>
+  <div>
+    <p>
+      <strong>Question:</strong>
+      <%= QuizQuestion.find(session[:quiz_question_id]).question %>
+    </p>
   </div>
 
-  <div class="field">
-    <%= form.label :answer %>
+  <div class="field space--field">
+    <%= form.label "Answer: " %>
     <%= form.text_field :answer %>
   </div>
 
   <div class="field">
-    <%= form.label :is_correct %>
+    <%= form.label "Is it correct?" %>
     <%= form.check_box :is_correct %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn--primary2--res" %>
   </div>
 <% end %>

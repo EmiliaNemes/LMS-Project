@@ -36,7 +36,7 @@ class Users::SessionsController < Devise::SessionsController
             sign_in(user)
             redirect_to after_sign_in_path_for(user)
         else
-            redirect_to new_user_session_path(), alert: "Username and/or Password is not correct1!"
+            redirect_to new_user_session_path(), alert: "Username and/or Password is not correct!"
         end
       else
         redirect_to new_user_session_path(), alert: "This User does not exist in this School!"

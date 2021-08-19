@@ -22,10 +22,11 @@ class QuizAnswersController < ApplicationController
   # POST /quiz_answers or /quiz_answers.json
   def create
     @quiz_answer = QuizAnswer.new(quiz_answer_params)
+    @quiz_answer.quiz_question_id = session[:quiz_question_id]
 
     respond_to do |format|
       if @quiz_answer.save
-        format.html { redirect_to @quiz_answer, notice: "Quiz answer was successfully created." }
+        format.html { redirect_to QuizQuestion.find(session[:quiz_question_id]), notice: "Quiz answer was successfully created." }
         format.json { render :show, status: :created, location: @quiz_answer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class QuizAnswersController < ApplicationController
   def update
     respond_to do |format|
       if @quiz_answer.update(quiz_answer_params)
-        format.html { redirect_to @quiz_answer, notice: "Quiz answer was successfully updated." }
+        format.html { redirect_to QuizQuestion.find(session[:quiz_question_id]), notice: "Quiz answer was successfully updated." }
         format.json { render :show, status: :ok, location: @quiz_answer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,6 +65,6 @@ class QuizAnswersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_answer_params
-      params.require(:quiz_answer).permit(:question_id, :answer, :is_correct)
+      params.require(:quiz_answer).permit(:quiz_question_id, :answer, :is_correct)
     end
 end

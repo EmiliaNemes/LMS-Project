@@ -1,9 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+  <h5 class="card-header card--header--title">
+    <%= @quiz_question.question %>
+    <%= link_to 'Back', Quize.find(session[:quiz_id]), class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Edit', edit_quiz_question_path(@quiz_question), class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Add answers', new_quiz_answer_path(), class:"btn btn--primary2--header--button" %>
+  </h5>
+  <div class="card-body">
 
-<p>
-  <strong>Question:</strong>
-  <%= @quiz_question.question %>
-</p>
+    <p>
+      <strong>Question:</strong>
+      <%= @quiz_question.question %>
+    </p>
 
-<%= link_to 'Edit', edit_quiz_question_path(@quiz_question) %> |
-<%= link_to 'Back', quiz_questions_path %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="table">
+          <tr>
+            <th>Answer</th>
+            <th>Correctness</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%@quiz_answers.each do |answer| %>
+            <tr>
+                <td><%= answer.answer%></td>
+                <td><%= answer.is_correct %></td>
+                <td><%= link_to "Edit", edit_quiz_answer_path(answer), class:"btn btn--primary2--table--del" %></td>
+            </tr>
+            <tr></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+

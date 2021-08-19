@@ -1,0 +1,22 @@
+<!--
+<tr class='nested-fields'>
+    <%= form.hidden_field :_destroy %>
+    <td>
+        <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" }, class:"btn btn--primary2--table--del" %>
+    </td>
+    <td><%= form.text_field :answer, placeholder: "Answer" %></td>
+    <td><%= form.select :is_correct, Array.[]("true", "false").to_a, {}, {class: "form-select form-select-md mb-3 form--select"} %></td>
+</tr>
+-->
+
+<div class='nested-fields'>
+    <div class="form-group">
+        <%= form.hidden_field :_destroy %>
+        
+        <%= form.text_field :answer, placeholder: "Answer" %>
+        <%= form.select :is_correct, Array.[]("true", "false").to_a, {}, {class: "form-select form-select-md mb-3 form--select"} %> 
+        <small>
+            <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" }, class:"btn btn--primary2--table--del" %>
+        </small>
+    </div>
+</div>

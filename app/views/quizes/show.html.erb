@@ -3,8 +3,48 @@
     <%= @quize.name %>
     <%= link_to 'Back', quizes_path, class:"btn btn--primary2--header--button" %>
     <%= link_to 'Edit', edit_quize_path(@quize), class:"btn btn--primary2--header--button" %>
+    <%= link_to 'Add questions', new_quiz_question_path(), class:"btn btn--primary2--header--button" %>
   </h5>
   <div class="card-body">
+    <h5><b>Description: </b></h5>
     <%= @quize.description %>
+    
+    <div><br /></div>
+
+    <% if current_user.administrator == true || current_user.teacher == true %>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="table">
+            <tr>
+              <th>Questions</th>
+              <th>Edit question</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @quiz_questions.each do |question| %>
+              <tr>
+                <td><%= link_to question.question, question %></td>
+                <td><%= link_to "Edit", edit_quiz_question_path(question), class:"btn btn--primary2--table--del" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div>
+      <%= form_tag quiz_solution_path, method: :get do %>
+        <% @quiz_questions.each do |question| %>
+          <b><%= question.question %></b><br />
+            <% QuizAnswer.where(:quiz_question_id => question.id).each do |answer| %>
+              <%= check_box_tag 'answers[]', answer.id %>
+              <%= answer.answer %><br />
+            <% end %>
+            <br />
+        <% end %>
+        <%= submit_tag 'Save', class:"btn btn--primary2--button"  %>
+      <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -8,20 +8,25 @@ class QuizQuestionsController < ApplicationController
 
   # GET /quiz_questions/1 or /quiz_questions/1.json
   def show
+    @quiz_answers = QuizAnswer.where(:quiz_question_id => @quiz_question.id)
+    session[:quiz_question_id] = @quiz_question.id
   end
 
   # GET /quiz_questions/new
   def new
     @quiz_question = QuizQuestion.new
+    @quiz_question.quiz_answers.build
   end
 
   # GET /quiz_questions/1/edit
   def edit
+    @quiz_question.quiz_answers.build
   end
 
   # POST /quiz_questions or /quiz_questions.json
   def create
     @quiz_question = QuizQuestion.new(quiz_question_params)
+    @quiz_question.quize_id = session[:quiz_id]
 
     respond_to do |format|
       if @quiz_question.save
@@ -60,10 +65,11 @@ class QuizQuestionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz_question
       @quiz_question = QuizQuestion.find(params[:id])
+      session[:quiz_question_id] = @quiz_question.id
     end
 
     # Only allow a list of trusted parameters through.
     def quiz_question_params
-      params.require(:quiz_question).permit(:question)
+      params.require(:quiz_question).permit(:question, :quize_id, quiz_answers_attributes: [:id, :_destroy, :quiz_question_id, :answer, :is_correct])
     end
 end

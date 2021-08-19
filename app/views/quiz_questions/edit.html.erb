@@ -1,6 +1,9 @@
-<h1>Editing Quiz Question</h1>
-
-<%= render 'form', quiz_question: @quiz_question %>
-
-<%= link_to 'Show', @quiz_question %> |
-<%= link_to 'Back', quiz_questions_path %>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">
+        Edit Quiz Question
+        <%= link_to 'Back', Quize.find(session[:quiz_id]), class:"btn btn--primary2--header--button"  %>
+    </h5>
+    <div class="card-body">
+        <%= render 'form', quiz_question: @quiz_question %>
+    </div>
+</div>

@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">
+        New Answer
+        <%= link_to 'Back', QuizQuestion.find(session[:quiz_question_id]), class:"btn btn--primary2--header--button"  %>
+        <%= link_to 'Edit', edit_quiz_answer_path(@quiz_answer), class:"btn btn--primary2--header--button" %>
+    </h5>
+    <div class="card-body">
+      <p>
+        <strong>Question:</strong>
+        <%= QuizQuestion.find(@quiz_answer.quiz_question_id).question %>
+      </p>
 
-<p>
-  <strong>Question:</strong>
-  <%= @quiz_answer.question_id %>
-</p>
+      <p>
+        <strong>Answer:</strong>
+        <%= @quiz_answer.answer %>
+      </p>
 
-<p>
-  <strong>Answer:</strong>
-  <%= @quiz_answer.answer %>
-</p>
-
-<p>
-  <strong>Is correct:</strong>
-  <%= @quiz_answer.is_correct %>
-</p>
-
-<%= link_to 'Edit', edit_quiz_answer_path(@quiz_answer) %> |
-<%= link_to 'Back', quiz_answers_path %>
+      <p>
+        <strong>Is correct:</strong>
+        <%= @quiz_answer.is_correct %>
+      </p>
+    </div>
+</div>
