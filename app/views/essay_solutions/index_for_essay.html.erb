@@ -21,8 +21,8 @@
               <tr>
                 <% user = User.find(essay_solution.student_id) %>
                 <td><%= user.first_name  + " " + user.last_name %></td>
-                <td><%= link_to 'See', essay_solution %></td>
-                <td></td>
+                <td><%= link_to 'See', edit_essay_solution_path(essay_solution) %></td>
+                <td><%= essay_solution.grade %></td>
               </tr>
             <% end %>
           </tbody>

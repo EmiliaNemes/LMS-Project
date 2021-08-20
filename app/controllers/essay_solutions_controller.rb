@@ -75,6 +75,6 @@ class EssaySolutionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def essay_solution_params
-      params.require(:essay_solution).permit(:essay_id, :student_id, :content, :attachments, :submit_time)
+      params.require(:essay_solution).permit(:essay_id, :student_id, :content, :attachments, :submit_time, :grade)
     end
 end

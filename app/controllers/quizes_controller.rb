@@ -98,7 +98,7 @@ class QuizesController < ApplicationController
     grade = contor*9/@current_questions.length() + 1
 
     @quiz_solution.update_attribute(:grade, grade)
-    redirect_to assignments_show
+    redirect_to assignments_show_path
   end
 
   private

@@ -1,3 +1,2 @@
 first_name,last_name,email,administrator,teacher,student
-Tom,Tom,tom@tom.com,false,false,true
-Diana,Diana,diana@diana.com,FALSE,FALSE,TRUE
+Tom,Tom,tom2@tom.com,false,false,true
