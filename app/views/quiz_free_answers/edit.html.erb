@@ -1,0 +1,9 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">
+        Edit Answer
+        <%= link_to 'Back', users_solution_path(User.find(@quiz_free_answer.student_id)), class:"btn btn--primary2--header--button"  %>
+    </h5>
+    <div class="card-body">
+        <%= render 'form', quiz_free_answer: @quiz_free_answer %>
+    </div>
+</div>

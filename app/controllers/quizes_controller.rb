@@ -76,21 +76,26 @@ class QuizesController < ApplicationController
     @current_questions = QuizQuestion.where(:quize_id => session[:quiz_id])
     contor = 0
     @current_questions.each do |quest|
-      @current_answers = QuizAnswer.where(:quiz_question_id => quest.id)
-      correct = true
-      
-      @current_answers.each do |answ|
-        if params[:answers].include? answ.id.to_s 
-          if !answ.is_correct
-            correct = false
-            break
+      if quest.answer_type = "Multiple Choice"
+        @current_answers = QuizAnswer.where(:quiz_question_id => quest.id)
+        correct = true
+        
+        @current_answers.each do |answ|
+          if params[:answers].include? answ.id.to_s 
+            if !answ.is_correct
+              correct = false
+              break
+            end
+            params[:answers].delete(answ.id.to_s)
           end
-          params[:answers].delete(answ.id.to_s)
         end
-      end
 
-      if correct
-        contor += 1
+        if correct
+          contor += 1
+        end
+      else 
+        @quiz_free_answer = QuizFreeAnswer.find_by_student_id_and_quiz_question_id(current_user.id, quest.id)
+        @quiz_free_answer.update_attribute(:free_answer, params[:answer])
       end
     end
 
@@ -98,6 +103,7 @@ class QuizesController < ApplicationController
     grade = contor*9/@current_questions.length() + 1
 
     @quiz_solution.update_attribute(:grade, grade)
+    @quiz_solution.update_attribute(:solution, params[:answers])
     redirect_to assignments_show_path
   end
 

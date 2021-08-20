@@ -1,5 +1,6 @@
 class QuizQuestionsController < ApplicationController
   before_action :set_quiz_question, only: %i[ show edit update destroy ]
+  after_action :assign_free_answer_to_users, only: %i[ create ]
 
   # GET /quiz_questions or /quiz_questions.json
   def index
@@ -16,11 +17,13 @@ class QuizQuestionsController < ApplicationController
   def new
     @quiz_question = QuizQuestion.new
     @quiz_question.quiz_answers.build
+    @types = Array.[]("Multiple Choice", "Free Answer")
   end
 
   # GET /quiz_questions/1/edit
   def edit
     @quiz_question.quiz_answers.build
+    @types = Array.[]("Multiple Choice", "Free Answer")
   end
 
   # POST /quiz_questions or /quiz_questions.json
@@ -61,6 +64,19 @@ class QuizQuestionsController < ApplicationController
     end
   end
 
+  def assign_free_answer_to_users
+    if @quiz_question.answer_type == "Free Answer"
+      @users_of_course = UsersCourse.where(:course_id => session[:course_id])
+      @users_of_course.each do |uc|
+        @quiz_free_answer = QuizFreeAnswer.new(:quiz_question_id => @quiz_question.id, :student_id => uc.user_id)
+        
+        if !@quiz_free_answer.save
+          redirect_back(fallback_location: root_path) #notice with error message
+        end
+      end
+    end
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz_question
@@ -70,6 +86,6 @@ class QuizQuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_question_params
-      params.require(:quiz_question).permit(:question, :quize_id, quiz_answers_attributes: [:id, :_destroy, :quiz_question_id, :answer, :is_correct])
+      params.require(:quiz_question).permit(:question, :quize_id, :answer_type, :points, quiz_answers_attributes: [:id, :_destroy, :quiz_question_id, :answer, :is_correct])
     end
 end

@@ -3,38 +3,42 @@
     <%= @quiz_question.question %>
     <%= link_to 'Back', Quize.find(session[:quiz_id]), class:"btn btn--primary2--header--button" %>
     <%= link_to 'Edit', edit_quiz_question_path(@quiz_question), class:"btn btn--primary2--header--button" %>
-    <%= link_to 'Add answers', new_quiz_answer_path(), class:"btn btn--primary2--header--button" %>
+    <% if @quiz_question.answer_type == "Multiple Choice" %>
+      <%= link_to 'Add answers', new_quiz_answer_path(), class:"btn btn--primary2--header--button" %>
+    <% end %>
   </h5>
   <div class="card-body">
 
     <p>
       <strong>Question:</strong>
-      <%= @quiz_question.question %>
+      <%= @quiz_question.question%>
+      <b><%= @quiz_question.points.to_s + " points" %></b>
     </p>
 
-    <div class="table-responsive">
-      <table class="table">
-        <thead class="table">
-          <tr>
-            <th>Answer</th>
-            <th>Correctness</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <%@quiz_answers.each do |answer| %>
+    <% if @quiz_question.answer_type == "Multiple Choice" %>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="table">
             <tr>
-                <td><%= answer.answer%></td>
-                <td><%= answer.is_correct %></td>
-                <td><%= link_to "Edit", edit_quiz_answer_path(answer), class:"btn btn--primary2--table--del" %></td>
+              <th>Answer</th>
+              <th>Correctness</th>
+              <th>Edit</th>
             </tr>
-            <tr></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+          </thead>
 
+          <tbody>
+            <%@quiz_answers.each do |answer| %>
+              <tr>
+                  <td><%= answer.answer%></td>
+                  <td><%= answer.is_correct %></td>
+                  <td><%= link_to "Edit", edit_quiz_answer_path(answer), class:"btn btn--primary2--table--del" %></td>
+              </tr>
+              <tr></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
   </div>
 </div>
 

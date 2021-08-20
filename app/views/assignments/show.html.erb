@@ -14,7 +14,11 @@
                         <th>Name</th>
                         <th>Due Date</th>
                         <th>Status</th>
-                        <th>Grade</th>
+                        <% if current_user.administrator == true || current_user.teacher == true %>
+                            <th>Grading</th>
+                        <% else %>
+                            <th>Grade</th>
+                        <% end %>
                     </tr>
                 </thead>
 
@@ -30,7 +34,15 @@
                                 <% else %>
                                     <td></td>
                                 <% end %>
-                                <td></td>
+                                <% @essay_solutions = EssaySolution.where(:essay_id => essay.id) %>
+                                <% @grading = "All graded" %>
+                                <% @essay_solutions.each do |essay_sol| %>
+                                    <% if essay_sol.grade == nil %>
+                                        <% @grading = "" %>
+                                        <% break %>
+                                    <% end %>
+                                <% end %>
+                                <td><%= @grading %></td>
                             <% else %>
                                 <% @essay_solution = EssaySolution.find_by_essay_id_and_student_id(essay.id, current_user.id) %>
                                 <td><%= link_to essay.name, edit_essay_solution_path(@essay_solution) %></td>
@@ -75,7 +87,15 @@
                                 <% else %>
                                     <td></td>
                                 <% end %>
-                                <td><%#= QuizSolution.find_by_student_id_and_quize_id(current_user.id, quiz.id).grade %></td>
+                                <% @quiz_solutions = QuizSolution.where(:quize_id => quiz.id) %>
+                                <% @grading = "All graded" %>
+                                <% @quiz_solutions.each do |quiz_sol| %>
+                                    <% if quiz_sol.grade == nil %>
+                                        <% @grading = "" %>
+                                        <% break %>
+                                    <% end %>
+                                <% end %>
+                                <td><%= @grading %></td>
                             <% else %>
                                 <td><%= link_to quiz.name, quiz %></td>
                                 <td><%= quiz.deadline %></td>

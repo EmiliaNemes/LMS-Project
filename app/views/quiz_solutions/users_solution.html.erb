@@ -1,0 +1,31 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title"><%= Quize.find(session[:quiz_id]).name %> - <%= User.find(params[:id]).first_name  + " " + User.find(params[:id]).last_name %>
+        <%= link_to 'Back', index_for_quiz_path(session[:quiz_id]), class:"btn btn--primary2--header--button" %>
+    </h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+            <thead class="table">
+                <tr>
+                <th>Question</th>
+                <th>User's Solution</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @quiz_questions.each do |question| %>
+                <tr>
+                    <td><%= link_to question.question, question %></td>
+                    <% if question.answer_type == "Free Answer" %>
+                        <td><%= link_to "See", edit_quiz_free_answer_path(QuizFreeAnswer.find_by_quiz_question_id_and_student_id(question.id, params[:id])), class:"btn btn--primary2--table--del" %></td>
+                        <%#= QuizFreeAnswer.find_by_quiz_question_id_and_student_id(question.id, params[:id]).free_answer %>
+                    <% else %>
+                        <td></td>
+                    <% end %>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

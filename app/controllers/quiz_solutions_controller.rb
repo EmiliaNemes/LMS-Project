@@ -60,6 +60,11 @@ class QuizSolutionsController < ApplicationController
     @quiz_solutions_for_quiz = QuizSolution.where(:quize_id => params[:id])
   end
 
+  def users_solution
+    @quiz_questions = QuizQuestion.where(:quize_id => session[:quiz_id])
+    puts @quiz_questions.inspect
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz_solution

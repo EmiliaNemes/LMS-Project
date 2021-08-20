@@ -1,0 +1,41 @@
+<%= form_with(model: quiz_free_answer) do |form| %>
+  <% if quiz_free_answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(quiz_free_answer.errors.count, "error") %> prohibited this quiz_answer from being saved:</h2>
+
+      <ul>
+        <% quiz_free_answer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <p>
+      <strong>Question:</strong>
+      <%= QuizQuestion.find(quiz_free_answer.quiz_question_id).question %>
+    </p>
+  </div>
+
+  <% if current_user.administrator == true || current_user.teacher == true %>
+    <div class="field space--field">
+      <%= form.label "Answer: " %>
+      <%= form.text_field :free_answer, readonly: true %>
+    </div>
+
+    <div class="field space--field">
+      <%= form.label "Points: " %>
+      <%= form.text_field :points %>
+    </div>
+  <% else %>
+    <div class="field space--field">
+      <%= form.label "Answer: " %>
+      <%= form.text_field :free_answer %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit class:"btn btn--primary2--res" %>
+  </div>
+<% end %>

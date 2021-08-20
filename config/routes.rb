@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :quiz_free_answers
   resources :quiz_solutions
   resources :essay_solutions
   resources :class_registers
@@ -34,4 +35,5 @@ Rails.application.routes.draw do
   get 'index_for_essay/:id', to: "essay_solutions#index_for_essay", :as => 'index_for_essay'
   get 'index_for_quiz/:id', to: "quiz_solutions#index_for_quiz", :as => 'index_for_quiz'
   get 'solution', to: "quizes#solution", :as => 'solution'
+  get 'users_solution/:id', to: "quiz_solutions#users_solution", :as => 'users_solution'
 end

@@ -1,0 +1,19 @@
+<div class="card" style="max-width: 80rem; min-height: 30rem">
+    <h5 class="card-header card--header--title">
+        New Answer
+        <%= link_to 'Back', QuizQuestion.find(session[:quiz_question_id]), class:"btn btn--primary2--header--button"  %>
+        <%= link_to 'Edit', edit_quiz_free_answer_path(@quiz_free_answer), class:"btn btn--primary2--header--button" %>
+    </h5>
+    <div class="card-body">
+      <p>
+        <strong>Question:</strong>
+        <%= QuizQuestion.find(@quiz_free_answer.quiz_question_id).question %>
+      </p>
+
+      <p>
+        <strong>Answer:</strong>
+        <%= @quiz_free_answer.free_answer %>
+      </p>
+
+    </div>
+</div>

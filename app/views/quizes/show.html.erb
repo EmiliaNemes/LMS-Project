@@ -39,11 +39,16 @@
       <%= form_tag solution_path, method: :get do %>
         <% @quiz_questions.each do |question| %>
           <b><%= question.question %></b><br />
-            <% QuizAnswer.where(:quiz_question_id => question.id).each do |answer| %>
-              <%= check_box_tag 'answers[]', answer.id %>
-              <%= answer.answer %><br />
+            <% if question.answer_type == "Multiple Choice" %>
+              <% QuizAnswer.where(:quiz_question_id => question.id).each do |answer| %>
+                <%= check_box_tag 'answers[]', answer.id %>
+                <%= answer.answer %><br />
+              <% end %>
+              <br />
+            <% else %>
+              <%= text_field_tag 'answer'%>
+              <br />
             <% end %>
-            <br />
         <% end %>
         <%= submit_tag 'Save', class:"btn btn--primary2--button"  %>
       <% end %>

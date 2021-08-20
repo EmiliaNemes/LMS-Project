@@ -11,9 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :question %>
+  <div class="field field--space">
+    <b><%= form.label "Question: " %></b>
     <%= form.text_field :question %>
+  </div>
+
+  <div>
+    <b><%= form.label "Type: " %></b><br />
+    <%= form.select :answer_type, @types.to_a, {}, {class: "form-select form-select-md mb-3 form--select--type"} %>
+  </div>
+
+  <div class="field field--space">
+    <b><%= form.label "Points: " %></b>
+    <%= form.text_field :points %>
   </div>
 
   <div class="actions">
